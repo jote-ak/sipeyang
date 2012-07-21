@@ -1,0 +1,54 @@
+<?page id="mainPage"  title="Sprimaudi"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window width="100%" height="100%" apply="org.sprimaudi.zkcontroller.main.MainController">
+        <borderlayout style="background:#c5e6ef;">
+            <north id="pnlJudul" height="70px"
+                   style="background:#c5e6ef;">
+                Header Here
+            </north>
+            <center id="pnlIsi">
+                <borderlayout>
+                    <north id="pnlMenu" height="27px">
+                        <include id="divMenu" src="zuls/main/menu.zul" progressing="true"/>
+                    </north>
+                    <west id="navPanel" title="Dashboard" width="200px"
+                          splittable="true" style="overflow:auto" collapsible="true" open="false">
+                        <include id="navInclude"/>
+                    </west>
+                    <center id="mainPanel">
+                        <window id="mainWin" height="100%" width="100%"
+                                contentStyle="overflow:auto">
+                            <include width="100%" height="100%" id="mainInclude" progressing="false"/>
+                        </window>
+                    </center>
+                    <east id="propPanel" size="250px"
+                          title="Properties" splittable="true" collapsible="true"
+                          open="false" style="overflow:auto" flex="true">
+                        <include id="propInclude"/>
+                    </east>
+                    <south id="subPanel" title="Sub Panel"
+                           height="200px" splittable="true" collapsible="true"
+                           open="false" autoscroll="true" style="overflow:auto">
+                        <include id="subInclude" height="100%"/>
+                    </south>
+                </borderlayout>
+            </center>
+            <south id="footnotePanel" height="20px"
+                   style="background:#c5e6ef;">
+                <hbox>
+                    <label id="lblUserPredicate" pre="true" style="font-size:10px;color:#008BB6;"
+                           value="Grup User: - Not Logged"/>
+                    <label pre="true" style="font-size:10px;color:#008BB6;"
+                           value="  "/>
+                    <label id="lblGlobalStatus" pre="true" style="font-size:10px;color:#008BB6;"
+                           value="ready"/>
+                    <label id="lblServer" pre="true" style="font-size:10px;color:red;"
+                           value="ready"/>
+                </hbox>
+            </south>
+        </borderlayout>
+    </window>
+</zk>

@@ -1,0 +1,48 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Item Rencana Audit" border="normal" id="winPerencanaanDetail"
+            width="100%" height="100%">
+        <vbox  width="100%" hflex="true">
+            <label value="Rencana Audit"></label>
+            <grid  width="100%" hflex="true">
+                <columns>
+                    <column width="30%" valign="top"></column>
+                    <column width="55%"></column>
+                    <column width="15%"></column>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Auditee"></label>
+                        <textbox hflex="true"></textbox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Subject"></label>
+                        <textbox hflex="true"></textbox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Keterangan"></label>
+                        <textbox hflex="true" rows="3"></textbox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <button label="Simpan Draft"></button>
+                        <label value=""></label>
+                        <label value=""></label>
+                    </row>
+                </rows>
+            </grid>
+            <h:div style="font:10px verdana;color:gray">
+                Keterangan form Header:
+                <h:br/>
+                Form ini digunakan untuk create new, editing, dan view / show detail dokumen rencana audit.
+                <h:br/>
+                layout yang sama digunakan juga untuk perencanaan budget,
+                rencana penugasan auditor dan pemilihan questionaire
+            </h:div>
+        </vbox>
+    </window>
+</zk>

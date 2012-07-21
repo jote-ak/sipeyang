@@ -1,0 +1,56 @@
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         metadata-complete="true">
+
+    <display-name>Java EE 6 Starter Application</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:/META-INF/spring/applicationContext.xml
+        </param-value>
+    </context-param>
+    <listener>
+        <description>ZK listener for session cleanup</description>
+        <listener-class>org.zkoss.zk.ui.http.HttpSessionListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>zkLoader</servlet-name>
+        <servlet-class>org.zkoss.zk.ui.http.DHtmlLayoutServlet</servlet-class>
+        <init-param>
+            <param-name>update-uri</param-name>
+            <param-value>/zkau</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>auEngine</servlet-name>
+        <servlet-class>org.zkoss.zk.au.http.DHtmlUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>zkLoader</servlet-name>
+        <url-pattern>*.zul</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>auEngine</servlet-name>
+        <url-pattern>/zkau/*</url-pattern>
+    </servlet-mapping>
+    <mime-mapping>
+        <extension>zul</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>index.zul</welcome-file>
+        <welcome-file>index.zhtml</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+</web-app>

@@ -1,0 +1,68 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window id="winMenu" apply="org.sprimaudi.zkcontroller.main.MenuController">
+        <menubar id="menu">
+            <menuitem id="mnHome" label="Home">
+            </menuitem>
+
+            <menu id="mi006" label="Rencana Audit" image="">
+                <menupopup>
+                    <menuitem id="mnDraftBaru" label="Draft Baru"/>
+                    <menuitem id="mnBrowseDraft" label="Browse Draft"/>
+                    <menuitem id="mnEditDraft" label="Edit Draft"/>
+                    <menuitem id="mnEditItemDraft" label="Edit Item"/>
+                    <menuitem id="mnBudgeting"  label="Budgeting"/>
+                    <menuitem id="mnPenugasanAudit"  label="Penugasan"/>
+                    <menuitem id="mnPemeriksaanDraft"  label="Pemeriksaan"/>
+                    <menuitem id="mnApprovalRencanaAudit" label="Approval"/>
+                </menupopup>
+            </menu>
+            <menu label="Pelaksanaan" id="mi007" image="">
+                <menupopup>
+                    <menu label="Penerbitan ST" id="mi040"></menu>
+                    <menu label="Surat Jalan" id="mi041">
+                        <menupopup>
+                            <menuitem id="mi047" label="Draft"/>
+                            <menuitem id="mi048" label="Approval"/>
+                            <menuitem id="mi049" label="Reimburs"/>
+                        </menupopup>
+                    </menu>
+                    <menuitem id="mnSPPBTimeControl" label="Daftar ST"/>
+                </menupopup>
+            </menu>
+            <menu label="Post Audit" image="">
+                <menupopup>
+                    <menu label="Evaluasi"></menu>
+                    <menu label="KPI"></menu>
+                    <menu label="Monitoring"></menu>
+                    <menu label="Audit Trail"></menu>
+                </menupopup>
+            </menu>
+            <menu label="Management Resiko" image="">
+                <menupopup>
+                    <menu id="mi008" label="Jenis Resiko">
+                    </menu>
+                    <menu id="mi010" label="Update Resiko" image="images/awas_16.png">
+                    </menu>
+                    <menu id="mi011" label="Trend">
+                    </menu>
+                </menupopup>
+            </menu>
+            <menu id="Master Data" label="Admin">
+                <menupopup>
+                    <menuitem id="Daftar Auditor" label="Setting Agenda"/>
+                    <menuitem id="Daftar Auditee" label="Setting Agenda"/>
+                    <!--                    <menuitem id="mnAbout" label="About"/>-->
+                </menupopup>
+            </menu>
+            <menu label="Pustaka" image="/images/help.png">
+                <menupopup>
+                    <menuitem id="miManual" label="Guide to EDP Auditing"/>
+                    <menuitem id="mnAbout" label="Software Help"/>
+                </menupopup>
+            </menu>
+        </menubar>
+    </window>
+</zk>
