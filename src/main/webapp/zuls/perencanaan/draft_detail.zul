@@ -3,7 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window title="Item Rencana Audit" border="normal" id="winPerencanaanDetail"
-            width="100%">
+            width="100%"
+            apply="org.sprimaudi.zkcontroller.perencanaan.ObjectAuditController">
         <vbox width="100%" hflex="true">
             <label value="Rencana Audit"></label>
             <grid width="100%" hflex="true">
@@ -41,22 +42,26 @@
                     </row>
                     <row>
                         <label value="Auditees"></label>
-
-                        <listbox width="100%">
-                            <listhead>
-                                <listheader label="NIP" width="40%"></listheader>
-                                <listheader label="Nama" width="60%"></listheader>
-                            </listhead>
-                            <listitem>
-                                <listcell>060114143</listcell>
-                                <listcell>Tejo A Kusuma</listcell>
-                            </listitem>
-                            <listitem>
-                                <listcell>060114142</listcell>
-                                <listcell>Erwin Duadja</listcell>
-                            </listitem>
-                        </listbox>
-
+                        <h:div>
+                            <hbox>
+                                <button id="btnAddAuditee" label="+"/>
+                                <button label="-"/>
+                            </hbox>
+                            <listbox width="98%">
+                                <listhead>
+                                    <listheader label="NIP" width="40%"></listheader>
+                                    <listheader label="Nama" width="60%"></listheader>
+                                </listhead>
+                                <listitem>
+                                    <listcell>060114143</listcell>
+                                    <listcell>Tejo A Kusuma</listcell>
+                                </listitem>
+                                <listitem>
+                                    <listcell>060114142</listcell>
+                                    <listcell>Erwin Duadja</listcell>
+                                </listitem>
+                            </listbox>
+                        </h:div>
                         <label value="-"></label>
                     </row>
                     <row>

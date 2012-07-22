@@ -1,0 +1,12 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Lookup Tool" border="normal" width="400px" height="450px" id="winMenu">
+        <hbox width="100%" widths="80%,2%,18%">
+            <textbox width="100%" hflex="true"></textbox>
+            <label value=" "></label>
+            <button label="search"></button>
+        </hbox>
+    </window>
+</zk>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Created by ZK Studio
+-->
+
+<zk>
+    <device-config>
+        <device-type>ajax</device-type>
+        <!--<timeout-uri>/timeout.zul</timeout-uri>-->
+        <!--
+              An empty URL can cause the browser to reload the same URL
+          -->
+    </device-config>
+    <system-config>
+        <ui-factory-class>org.zkoss.spring.bean.ZkSpringUiFactory</ui-factory-class>
+        <disable-event-thread>false</disable-event-thread>
+
+    </system-config>
+
+</zk>
