@@ -2,12 +2,15 @@
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-    <window title="Dokumen Rencana Audit" border="normal" id="winBrowsePerencanaan"
-            width="100%" height="100%" apply="org.sprimaudi.zkcontroller.perencanaan.HeaderController">
-        <hbox width="100%" widths="49%,49%" hflex="true">
-            <vbox>
+    <window hflex="true"
+            title="Dokumen Rencana Audit" border="normal"
+            id="winBrowsePerencanaan"
+            width="100%"
+            apply="org.sprimaudi.zkcontroller.perencanaan.HeaderController">
+        <hbox width="100%" widths="49%,2%,49%">
+            <vbox width="100%">
                 <label value="Rencana Audit"></label>
-                <grid width="100%">
+                <grid width="100%" hflex="true">
                     <columns>
                         <column width="35%" valign="top"></column>
                         <column width="65%"></column>
@@ -15,40 +18,42 @@
                     <rows>
                         <row>
                             <label value="Nomor"></label>
-                            <textbox hflex="true"></textbox>
+                            <textbox id="txtNomor" hflex="true"></textbox>
                         </row>
                         <row>
                             <label value="Tanggal"></label>
-                            <datebox format="dd-MM-yyyy" hflex="true"></datebox>
+                            <datebox id="txtTanggal" format="dd-MM-yyyy" hflex="true"></datebox>
                         </row>
                         <row>
                             <label value="Tahun"></label>
-                            <textbox width="80px"></textbox>
+                            <textbox id="txtTahun" width="80px"></textbox>
                         </row>
                         <row>
                             <label value="Jenis Audit"></label>
                             <vbox>
-                                <radiogroup>
-                                    <radio label="Annual" selected="true"></radio>
-                                    <radio label="Khusus"></radio>
+                                <radiogroup id="jnsAudit">
+                                    <custom-attributes grup="2"/>
+                                    <radio value="AN" label="Annual" selected="true"></radio>
+                                    <radio value="KH" label="Khusus"></radio>
                                 </radiogroup>
                             </vbox>
                         </row>
                         <row>
                             <label value="Keterangan"></label>
-                            <textbox hflex="true" rows="3"></textbox>
+                            <textbox id="txtKeterangan" hflex="true" rows="3"></textbox>
                         </row>
                         <row>
-                            <button label="Simpan Draft"></button>
+                            <button id="btnSimpanRencana" label="Simpan Draft"></button>
                             <label value=""></label>
                         </row>
                     </rows>
                 </grid>
             </vbox>
-
-            <vbox>
+            <vbox width="100%"></vbox>
+            <vbox width="100%">
                 <label value="Item Rencana Audit"></label>
-                <listbox id="lstItemPerencanaan">
+                <listbox width="100%" hflex="true" id="lstItemPerencanaan">
+
                     <listhead>
                         <listheader width="60%" label="Auditee"></listheader>
                         <listheader width="40%" label="Subject"></listheader>
@@ -67,6 +72,7 @@
                     </listitem>
                 </listbox>
             </vbox>
+
         </hbox>
         <h:div style="font:10px verdana;color:gray">
             Keterangan form Header:

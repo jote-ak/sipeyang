@@ -21,7 +21,7 @@ public class Droa implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date tanggal;
     private Long tahun;
-    @Column(length = 12)
+    @Column(length = 256)
     private String keterangan;
     @ManyToOne(targetEntity = Referensi.class)
     private Referensi status;
@@ -29,7 +29,7 @@ public class Droa implements Serializable {
     private Referensi jenis;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(length = 19)
-    private Date created;
+    private Date created = new Date();
 
     public Long getId() {
         return id;

@@ -3,24 +3,75 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window title="Item Rencana Audit" border="normal" id="winPerencanaanDetail"
-            width="100%" height="100%">
-        <vbox  width="100%" hflex="true">
+            width="100%">
+        <vbox width="100%" hflex="true">
             <label value="Rencana Audit"></label>
-            <grid  width="100%" hflex="true">
+            <grid width="100%" hflex="true">
                 <columns>
                     <column width="30%" valign="top"></column>
-                    <column width="55%"></column>
+                    <column width="55%" valign="middle"></column>
                     <column width="15%"></column>
                 </columns>
                 <rows>
                     <row>
-                        <label value="Auditee"></label>
+                        <label value="Topik"></label>
                         <textbox hflex="true"></textbox>
                         <label value=""></label>
                     </row>
                     <row>
-                        <label value="Subject"></label>
+                        <label value="Jenis Auditee"></label>
+                        <vbox>
+                            <radiogroup id="jnsAuditee">
+                                <custom-attributes grup="3"/>
+                                <radio value="UN" label="Unit" selected="true"></radio>
+                                <radio value="PN" label="Personal"></radio>
+                            </radiogroup>
+                        </vbox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Unit (Lookup)"></label>
+                        <hbox width="100%" widths="82%,2%,12%">
+                            <textbox width="100%"></textbox>
+                            <vbox></vbox>
+                            <button label="..."></button>
+                        </hbox>
+
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Auditees"></label>
+
+                        <listbox width="100%">
+                            <listhead>
+                                <listheader label="NIP" width="40%"></listheader>
+                                <listheader label="Nama" width="60%"></listheader>
+                            </listhead>
+                            <listitem>
+                                <listcell>060114143</listcell>
+                                <listcell>Tejo A Kusuma</listcell>
+                            </listitem>
+                            <listitem>
+                                <listcell>060114142</listcell>
+                                <listcell>Erwin Duadja</listcell>
+                            </listitem>
+                        </listbox>
+
+                        <label value="-"></label>
+                    </row>
+                    <row>
+                        <label value="Nama Auditee"></label>
                         <textbox hflex="true"></textbox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Alamat Auditee"></label>
+                        <textbox hflex="true" rows="2"></textbox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Alasan"></label>
+                        <textbox hflex="true" rows="2"></textbox>
                         <label value=""></label>
                     </row>
                     <row>

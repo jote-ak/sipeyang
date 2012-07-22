@@ -18,10 +18,10 @@
                           splittable="true" style="overflow:auto" collapsible="true" open="false">
                         <include id="navInclude"/>
                     </west>
-                    <center id="mainPanel">
+                    <center id="mainPanel" vflex="1">
                         <window id="mainWin" height="100%" width="100%"
-                                contentStyle="overflow:auto">
-                            <include width="100%" height="100%" id="mainInclude" progressing="false"/>
+                                contentStyle="overflow:auto" vflex="1">
+                            <include id="mainInclude" progressing="false" vflex="1"/>
                         </window>
                     </center>
                     <east id="propPanel" size="250px"

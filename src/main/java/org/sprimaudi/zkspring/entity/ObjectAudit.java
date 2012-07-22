@@ -22,6 +22,8 @@ public class ObjectAudit {
     private Date akhir;
     @Column(length = 256)
     private String alasan;
+    @Column(length = 64)
+    private String topik;
     @Column(length = 256)
     private String keterangan;
     @Column(length = 12)
@@ -169,5 +171,13 @@ public class ObjectAudit {
 
     public void setBudget(List<Budget> budget) {
         this.budget = budget;
+    }
+
+    public String getTopik() {
+        return topik;
+    }
+
+    public void setTopik(String topik) {
+        this.topik = topik;
     }
 }
