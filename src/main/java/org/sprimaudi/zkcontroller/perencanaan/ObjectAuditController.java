@@ -1,5 +1,7 @@
 package org.sprimaudi.zkcontroller.perencanaan;
 
+import org.sprimaudi.zkutil.lookup.LookupUtil;
+import org.sprimaudi.zkutil.lookuper.UnitLookuper;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
@@ -7,6 +9,7 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.DelegatingVariableResolver;
 import org.zkoss.zul.Window;
 
@@ -23,13 +26,15 @@ import java.util.HashMap;
 public class ObjectAuditController extends SelectorComposer<Window> {
     @Wire
     Window self;
+    @WireVariable
+    LookupUtil lookupUtil;
+
+    @WireVariable
+    UnitLookuper unitLookuper;
 
     @Listen("onClick=#btnAddAuditee")
     public void addAuditee(Event evt) {
-        Window w = (Window) Executions
-                .createComponents("zuls/main/lookup.zul", null, null);
-        w.setClosable(true);
+        Window w = unitLookuper.showLookup();
         w.doModal();
-        System.out.println("this should wait component to close");
     }
 }
