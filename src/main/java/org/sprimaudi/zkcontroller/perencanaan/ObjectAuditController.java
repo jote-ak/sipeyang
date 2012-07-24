@@ -26,8 +26,6 @@ import java.util.HashMap;
 public class ObjectAuditController extends SelectorComposer<Window> {
     @Wire
     Window self;
-    @WireVariable
-    LookupUtil lookupUtil;
 
     @WireVariable
     UnitLookuper unitLookuper;
@@ -36,5 +34,6 @@ public class ObjectAuditController extends SelectorComposer<Window> {
     public void addAuditee(Event evt) {
         Window w = unitLookuper.showLookup();
         w.doModal();
+        System.out.println(unitLookuper.getSelected().getKode());
     }
 }

@@ -6,6 +6,7 @@ import org.sprimaudi.zkspring.repository.UnitRepository;
 import org.sprimaudi.zkutil.lookup.LookupColumn;
 import org.sprimaudi.zkutil.lookup.LookupUtil;
 import org.springframework.stereotype.Component;
+import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 
 import javax.inject.Inject;
@@ -26,7 +27,9 @@ public class UnitLookuper extends LookupUtil<Unit> {
 
     @Override
     public void render(Listitem listitem, Unit unit, int i) throws Exception {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //To change body of implemented methods use File | Settings | File Templates.  ]
+        new Listcell(unit.getKode()).setParent(listitem);
+        new Listcell(unit.getNama()).setParent(listitem);
     }
 
     @Override

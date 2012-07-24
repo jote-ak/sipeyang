@@ -32,17 +32,18 @@ public abstract class LookupUtil<T> implements ListitemRenderer<T> {
         lbx.setItemRenderer(this);
 
         List<LookupColumn> lcs = Arrays.asList(getColumns());
-        while (lcs.iterator().hasNext()) {
-            LookupColumn next = lcs.iterator().next();
-            (new Listheader(next.getLabel(), null, next.getWidth())).setParent(lbx.getListhead());
-
+        System.out.println("jumalh ylang terdaftar" + lcs.size());
+        for (LookupColumn lc : lcs) {
+            Listheader lhr = new Listheader(lc.getLabel(), "", lc.getWidth());
+            lhr.setParent(lbx.getListhead());
         }
 
         lbx.addEventListener("onSelect", new EventListener<Event>() {
             @Override
             public void onEvent(Event event) throws Exception {
+                System.out.println("ini adalah event on select");
                 if (lbx != null && lbx.getSelectedItem() != null)
-                    selected = lbx.getSelectedItem().getValue();
+                    selected = (T) lbx.getSelectedItem().getValue();
             }
         });
         btnCari.addEventListener("onClick", new EventListener<Event>() {
@@ -52,8 +53,6 @@ public abstract class LookupUtil<T> implements ListitemRenderer<T> {
                 lbx.setModel(new ListModelList<T>(model));
             }
         });
-        (new Listheader()).setParent(lbx.getListhead());
-
         w.setClosable(true);
         return w;
     }
