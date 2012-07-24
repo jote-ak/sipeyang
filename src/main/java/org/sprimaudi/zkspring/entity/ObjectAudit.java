@@ -43,6 +43,8 @@ public class ObjectAudit {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(length = 19)
     private Date created;
+    @OneToOne(targetEntity = Unit.class)
+    private Unit unit;
     //
     //Relationship identifier
     //
@@ -52,6 +54,9 @@ public class ObjectAudit {
 
     @OneToMany(mappedBy = "objectAudit", targetEntity = Budget.class)
     List<Budget> budget;
+
+    @ManyToOne(targetEntity = Droa.class)
+    private Droa droa;
 
     public Long getId() {
         return id;
@@ -179,5 +184,13 @@ public class ObjectAudit {
 
     public void setTopik(String topik) {
         this.topik = topik;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }

@@ -33,9 +33,9 @@
                     <row>
                         <label value="Unit (Lookup)"></label>
                         <hbox width="100%" widths="82%,2%,12%">
-                            <textbox width="100%"></textbox>
+                            <textbox id="txtUnit" width="100%"></textbox>
                             <vbox></vbox>
-                            <button label="..."></button>
+                            <button id="btnUnitObjectAudit" label="..."></button>
                         </hbox>
 
                         <label value=""></label>
@@ -65,27 +65,26 @@
                         <label value="-"></label>
                     </row>
                     <row>
-                        <label value="Nama Auditee"></label>
-                        <textbox hflex="true"></textbox>
-                        <label value=""></label>
-                    </row>
-                    <row>
-                        <label value="Alamat Auditee"></label>
-                        <textbox hflex="true" rows="2"></textbox>
+                        <label value="Periode"></label>
+                        <hbox width="100%" widths="48%,2%,48%">
+                            <datebox id="txtAwalObjectAudit" format="dd-MM-yyyy"></datebox>
+                            <h:span></h:span>
+                            <datebox id="txtAkhirObjectAudit" format="dd-MM-yyyy"></datebox>
+                        </hbox>
                         <label value=""></label>
                     </row>
                     <row>
                         <label value="Alasan"></label>
-                        <textbox hflex="true" rows="2"></textbox>
+                        <textbox id="txtAlasan" hflex="true" rows="2"></textbox>
                         <label value=""></label>
                     </row>
                     <row>
                         <label value="Keterangan"></label>
-                        <textbox hflex="true" rows="3"></textbox>
+                        <textbox id="txtKeterangan" hflex="true" rows="3"></textbox>
                         <label value=""></label>
                     </row>
                     <row>
-                        <button label="Simpan Draft"></button>
+                        <button id="btnSimpanObjectAudit" label="Simpan Draft"></button>
                         <label value=""></label>
                         <label value=""></label>
                     </row>

@@ -3,6 +3,7 @@ package org.sprimaudi.zkspring.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,6 +31,11 @@ public class Droa implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(length = 19)
     private Date created = new Date();
+
+    //Listing referensi
+    @OneToMany(targetEntity = ObjectAudit.class, mappedBy = "droa")
+    private List<ObjectAudit> audits;
+
 
     public Long getId() {
         return id;

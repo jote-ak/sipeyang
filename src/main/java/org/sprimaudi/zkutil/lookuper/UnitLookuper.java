@@ -21,15 +21,30 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Component(value = "unitLookuper")
-public class UnitLookuper extends LookupUtil<Unit> {
+public class UnitLookuper extends LookupUtil<Unit, Long> {
     @Inject
     UnitRepository unitRepository;
 
+
     @Override
-    public void render(Listitem listitem, Unit unit, int i) throws Exception {
-        //To change body of implemented methods use File | Settings | File Templates.  ]
-        new Listcell(unit.getKode()).setParent(listitem);
-        new Listcell(unit.getNama()).setParent(listitem);
+    public String getDisplayer(Unit data) {
+        return data.getNama();  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getDescription(Unit data) {
+        return String.format("%s (%s), %s", data.getNama(),
+                data.getKode(), data.getAlamat());    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Unit getById(Long id) {
+        return unitRepository.findOne(id);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Long getKey(Unit data) {
+        return data.getId();  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -46,5 +61,12 @@ public class UnitLookuper extends LookupUtil<Unit> {
                 new LookupColumn("Kode", "35%"),
                 new LookupColumn("Unit", "65%")
         };  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void rendering(Listitem listitem, Unit unit, int i) throws Exception {
+        //To change body of implemented methods use File | Settings | File Templates.  ]
+        new Listcell(unit.getKode()).setParent(listitem);
+        new Listcell(unit.getNama()).setParent(listitem);
     }
 }

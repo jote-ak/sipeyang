@@ -6,16 +6,16 @@
             height="450px" id="winMenu" contentStyle="overflow:auto"
             >
         <hbox width="100%" widths="80%,2%,18%">
-            <textbox id="txtCari" width="100%" hflex="true"></textbox>
+            <textbox id="txtLookupCari" width="100%" hflex="true"></textbox>
             <label value=" "></label>
-            <button id="lookupSearch" label="search"></button>
+            <button id="btnLookupCari" label="search"></button>
         </hbox>
         <listbox id="lstLookup">
             <listhead></listhead>
         </listbox>
         <hbox>
-            <button label="Close"></button>
-            <button label="Cancel"></button>
+            <button id="btnLookupClose" label="Close"></button>
+            <button id="btnLookupCancel" label="Cancel"></button>
         </hbox>
     </window>
 </zk>
