@@ -5,6 +5,7 @@
     <window title="Item Rencana Audit" border="normal" id="winPerencanaanDetail"
             width="100%"
             apply="org.sprimaudi.zkcontroller.perencanaan.ObjectAuditController">
+        <textbox visible="false" id="txtDroa"/>
         <vbox width="100%" hflex="true">
             <label value="Rencana Audit"></label>
             <grid width="100%" hflex="true">
@@ -16,7 +17,7 @@
                 <rows>
                     <row>
                         <label value="Topik"></label>
-                        <textbox hflex="true"></textbox>
+                        <textbox id="txtTopikObjectAudit" hflex="true"></textbox>
                         <label value=""></label>
                     </row>
                     <row>

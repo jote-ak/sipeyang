@@ -1,0 +1,16 @@
+delete from referensi;
+delete from unit;
+
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  0, 'Grup GRUP', 'GP', 'GRUP', NULL, 1);
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  1, 'GRUP Referensi Jenis \r\n\r\nAudit', NULL, NULL, NULL, 2);
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  1, 'GRUP Referensi Jenis Object Auditee\r\n\r\nAudit', NULL, NULL, NULL, 3);
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  2, 'Annual', 'AN', 'Annual', NULL, NULL);
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  2, 'Khusus', 'KH', 'Khusus', NULL, NULL);
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  3, 'Unit', 'UN', 'Unit', NULL, NULL);
+INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  3, 'Personal', 'PN', 'Personal', NULL, NULL);
+
+
+INSERT INTO `unit` (`id`, `alamat`, `kode`, `nama`, `parent_id`) VALUES (1, 'Ramawamangun', 'RWG', 'Cabang Rawamangun', NULL);
+INSERT INTO `unit` (`id`, `alamat`, `kode`, `nama`, `parent_id`) VALUES (2, 'Bintaro', 'BNT', 'Cabang Bintaoro', NULL);
+INSERT INTO `unit` (`id`, `alamat`, `kode`, `nama`, `parent_id`) VALUES (3, 'Pamulang', 'PMG', 'Cabang Pabulang', NULL);
+

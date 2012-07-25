@@ -3,6 +3,7 @@ package org.sprimaudi.zkcontroller.perencanaan;
 import org.sprimaudi.zkspring.entity.ObjectAudit;
 import org.sprimaudi.zkspring.repository.UnitRepository;
 import org.sprimaudi.zkspring.service.ObjectAuditService;
+import org.sprimaudi.zkspring.util.PageMgt;
 import org.sprimaudi.zkutil.ReferensiUtil;
 import org.sprimaudi.zkutil.lookup.LookupUtil;
 import org.sprimaudi.zkutil.lookuper.UnitLookuper;
@@ -35,7 +36,7 @@ public class ObjectAuditController extends SelectorComposer<Window> {
     Window self;
 
     @Wire
-    Textbox txtUnit, txtAlasan, txtKeterangan;
+    Textbox txtUnit, txtAlasan, txtKeterangan, txtTopikObjectAudit;
     @Wire
     Datebox txtAwalObjectAudit, txtAkhirObjectAudit;
 
@@ -52,6 +53,16 @@ public class ObjectAuditController extends SelectorComposer<Window> {
     @WireVariable
     ReferensiUtil referensiUtil;
 
+    @WireVariable
+    PageMgt pgm;
+
+    @Override
+    public void doAfterCompose(Window comp) throws Exception {
+        super.doAfterCompose(comp);    //To change body of overridden methods use File | Settings | File Templates.
+        System.out.println("observe windows param");
+        System.out.println(pgm.windowParam(String.class, comp, "tes"));
+    }
+
     private ObjectAudit extract() {
         ObjectAudit oa = new ObjectAudit();
         oa.setAlasan(txtAlasan.getText());
@@ -60,6 +71,7 @@ public class ObjectAuditController extends SelectorComposer<Window> {
         oa.setUnit(unitLookuper.getValue(txtUnit));
         oa.setAwal(txtAwalObjectAudit.getValue());
         oa.setAkhir(txtAkhirObjectAudit.getValue());
+        oa.setTopik(txtTopikObjectAudit.getText());
 
         return oa;
     }

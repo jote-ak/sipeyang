@@ -2,6 +2,9 @@ package org.sprimaudi.zkspring.util;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.zkoss.zk.ui.Execution;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
@@ -29,6 +32,8 @@ public class PageMgt {
     public South subPanel;
     public West navPanel;
     public East propPanel;
+    private static final String WINDOW_PARAM_ATTR = "window_param_attr";
+    private static final String INCLUDE_PARAM_ATTR = "include_param_attr";
 
 
     public String tesBean() {
@@ -57,13 +62,11 @@ public class PageMgt {
     }
 
     public void showMain(String pagePath, Map<String, Object> arg) {
-        System.out.println("this hashcode: " + this.toString());
-        if (mainInclude != null) {
-            mainInclude.setSrc(pagePath);
-        }
+        showPage(mainInclude, pagePath, false, mainPanel, false, arg);
     }
 
     public void showMainOnly(String pagePath) {
+
         showPage(mainInclude, pagePath, false, mainPanel, true);
     }
 
@@ -71,27 +74,50 @@ public class PageMgt {
         showPage(mainInclude, pagePath, false, mainPanel, false);
     }
 
+
     public void showNav(String pagePath) {
         showPage(navInclude, pagePath, false, navPanel, false);
+    }
+
+    public void showNav(String pagePath, Map<String, Object> arg) {
+        showPage(navInclude, pagePath, false, navPanel, false, arg);
     }
 
     public void showProp(String pagePath) {
         showPage(propInclude, pagePath, false, propPanel, false);
     }
 
-    public void showPage(Include icl, String pagePath,
-                         boolean progressing, LayoutRegion region, boolean closeOther) {
+    public void showProp(String pagePath, Map<String, Object> arg) {
+        showPage(propInclude, pagePath, false, propPanel, false, arg);
+    }
+
+    public void showPage(Include icl,
+                         String pagePath,
+                         boolean progressing,
+                         LayoutRegion region,
+                         boolean closeOther) {
+        showPage(icl, pagePath, progressing, region, closeOther, null);
+    }
+
+    public void showPage(Include icl,
+                         String pagePath,
+                         boolean progressing,
+                         LayoutRegion region,
+                         boolean closeOther,
+                         Map<String, Object> arg) {
         icl.setProgressing(progressing);
         if (closeOther) {
             closePanels();
         }
+        System.out.println("arg");
+        System.out.println(arg);
+        icl.setDynamicProperty(INCLUDE_PARAM_ATTR, arg);
         icl.setSrc(pagePath);
         Window win = findChildWindow(icl);
-        postOnAfterCreate(win);
+        postOnAfterCreate(win, arg);
         if (!(region instanceof Center)) {
             region.setOpen(true);
         }
-
     }
 
     private Window findChildWindow(Include include) {
@@ -104,9 +130,39 @@ public class PageMgt {
         return null;
     }
 
-    private void postOnAfterCreate(Window win) {
+    private void postOnAfterCreate(Window win, Map<String, Object> arg) {
         if (win != null) {
-            Events.echoEvent("onAfterCreate", win, "Data After Create");
+            Events.echoEvent("onAfterCreate", win, arg);
         }
+    }
+
+    public <T> T eventParam(Class<T> clazz, Event event, String key) {
+        Object odata = event.getData();
+        if (odata == null)
+            return null;
+        if (!(odata instanceof Map))
+            return null;
+        Object opar = ((Map<String, Object>) odata).get(key);
+        if (opar == null)
+            return null;
+        return (T) opar;
+    }
+
+    public <T> T windowParam(Class<T> clazz, Window window, String key) {
+        Object odata = window.getDesktop().getExecution().getParameter(INCLUDE_PARAM_ATTR);
+        System.out.println("fetch odata from execution");
+        System.out.println(odata);
+        if (odata == null)
+            return null;
+        if (!(odata instanceof Map))
+            return null;
+        Object opar = ((Map<String, Object>) odata).get(key);
+        if (opar == null)
+            return null;
+        return (T) opar;
+    }
+
+    public void putWindowParam(Map<String, Object> arg, Window window) {
+        window.setAttribute(WINDOW_PARAM_ATTR, arg);
     }
 }

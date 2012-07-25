@@ -43,8 +43,12 @@
                             <textbox id="txtKeterangan" hflex="true" rows="3"></textbox>
                         </row>
                         <row>
-                            <button id="btnSimpanRencana" label="Simpan Draft"></button>
                             <label value=""></label>
+                            <hbox>
+                                <button id="btnSimpanRencana" label="Simpan"></button>
+                                <button id="btnEditRencana" label="Object Audit ..."></button>
+                            </hbox>
+
                         </row>
                     </rows>
                 </grid>
@@ -58,18 +62,6 @@
                         <listheader width="60%" label="Auditee"></listheader>
                         <listheader width="40%" label="Subject"></listheader>
                     </listhead>
-                    <listitem>
-                        <listcell>HRD Dept</listcell>
-                        <listcell>Budget Fraud</listcell>
-                    </listitem>
-                    <listitem>
-                        <listcell>IT Dept</listcell>
-                        <listcell>Regular Audit</listcell>
-                    </listitem>
-                    <listitem>
-                        <listcell>Finance</listcell>
-                        <listcell>Regular Audit</listcell>
-                    </listitem>
                 </listbox>
             </vbox>
 
