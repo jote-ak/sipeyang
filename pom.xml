@@ -306,6 +306,20 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+        <dependency>
+            <groupId>com.djbc</groupId>
+            <artifactId>com.djbc.utilities</artifactId>
+            <version>1.0.0.9</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/CommonDJBCUtil_1.0.0.9.jar</systemPath>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.djbc</groupId>-->
+            <!--<artifactId>com.djbc.utilities.StringUtil</artifactId>-->
+            <!--<version>1.0.0.1</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${project.basedir}/lib/StringUtil.jar</systemPath>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>

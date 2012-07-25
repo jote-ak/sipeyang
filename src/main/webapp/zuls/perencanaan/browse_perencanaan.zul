@@ -1,9 +1,11 @@
+<?link rel="stylesheet" type="text/css" href="/css/style.css" ?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window title="Daftar Rencana Audit" border="normal" id="winBrowsePerencanaan"
             width="100%" height="100%" apply="org.sprimaudi.zkcontroller.perencanaan.BrowseHeaderController">
+
         <grid>
             <columns>
                 <column width="20%"></column>
@@ -41,27 +43,27 @@
                 <listheader width="15%" label="Jenis"></listheader>
                 <listheader width="40%" label="Keterangan"></listheader>
             </listhead>
-            <listitem>
-                <listcell label="512/BKP/2011"></listcell>
-                <listcell label="21-11-2011"></listcell>
-                <listcell label="2011"></listcell>
-                <listcell label="Annual"></listcell>
-                <listcell label="Annual Audit Plan"></listcell>
-            </listitem>
-            <listitem>
-                <listcell label="511/BKP/2010"></listcell>
-                <listcell label="21-11-2010"></listcell>
-                <listcell label="2011"></listcell>
-                <listcell label="Annual"></listcell>
-                <listcell label="Annual Audit Plan"></listcell>
-            </listitem>
-            <listitem>
-                <listcell label="510/BKP/2011"></listcell>
-                <listcell label="21-03-2011"></listcell>
-                <listcell label="2011"></listcell>
-                <listcell label="Khusus"></listcell>
-                <listcell label="Suspect Kredit Macet"></listcell>
-            </listitem>
+            <!--<listitem>-->
+                <!--<listcell label="512/BKP/2011"></listcell>-->
+                <!--<listcell label="21-11-2011"></listcell>-->
+                <!--<listcell label="2011"></listcell>-->
+                <!--<listcell label="Annual"></listcell>-->
+                <!--<listcell label="Annual Audit Plan"></listcell>-->
+            <!--</listitem>-->
+            <!--<listitem>-->
+                <!--<listcell label="511/BKP/2010"></listcell>-->
+                <!--<listcell label="21-11-2010"></listcell>-->
+                <!--<listcell label="2011"></listcell>-->
+                <!--<listcell label="Annual"></listcell>-->
+                <!--<listcell label="Annual Audit Plan"></listcell>-->
+            <!--</listitem>-->
+            <!--<listitem>-->
+                <!--<listcell label="510/BKP/2011"></listcell>-->
+                <!--<listcell label="21-03-2011"></listcell>-->
+                <!--<listcell label="2011"></listcell>-->
+                <!--<listcell label="Khusus"></listcell>-->
+                <!--<listcell label="Suspect Kredit Macet"></listcell>-->
+            <!--</listitem>-->
         </listbox>
     </window>
 </zk>

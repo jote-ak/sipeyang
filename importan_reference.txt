@@ -1,13 +1,24 @@
+/* select kode,nama,keterangan,nilai,num from referensi order by grup,id */
+
 delete from referensi;
 delete from unit;
 
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  0, 'Grup GRUP', 'GP', 'GRUP', NULL, 1);
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  1, 'GRUP Referensi Jenis \r\n\r\nAudit', NULL, NULL, NULL, 2);
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  1, 'GRUP Referensi Jenis Object Auditee\r\n\r\nAudit', NULL, NULL, NULL, 3);
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  2, 'Annual', 'AN', 'Annual', NULL, NULL);
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  2, 'Khusus', 'KH', 'Khusus', NULL, NULL);
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  3, 'Unit', 'UN', 'Unit', NULL, NULL);
-INSERT INTO `referensi` (`grup`, `keterangan`, `kode`, `nama`, `nilai`, `num`) VALUES (  3, 'Personal', 'PN', 'Personal', NULL, NULL);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('GP', 'GRUP', 'Grup GRUP', NULL, 1);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES (NULL, NULL, 'GRUP Referensi Jenis \r\n\r\nAudit', NULL, 2);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES (NULL, NULL, 'GRUP Referensi Jenis Object Auditee\r\n\r\nAudit', NULL, 3);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('ICM', 'Incremental', 'Grup Incremental', NULL, 4);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('SDR', 'Status Droa', 'Grup Status Droa', NULL, 5);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('SOA', 'Status Object Audit', 'Grup Status Object Audit', NULL, 6);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('AN', 'Annual', 'Annual', NULL, NULL);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('KH', 'Khusus', 'Khusus', NULL, NULL);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('UN', 'Unit', 'Unit', NULL, NULL);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('PN', 'Personal', 'Personal', NULL, NULL);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('IDR', 'Incremental Droa', 'Incremental Droa', '2012', 1);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('DRF', 'Draft Droa', 'Draft Droa', NULL, NULL);
+INSERT INTO `referensi` (`kode`, `nama`, `keterangan`, `nilai`, `num`) VALUES ('NMR', 'Penomoran', 'Penomoran', NULL, NULL);
+
+
+
 
 
 INSERT INTO `unit` (`id`, `alamat`, `kode`, `nama`, `parent_id`) VALUES (1, 'Ramawamangun', 'RWG', 'Cabang Rawamangun', NULL);

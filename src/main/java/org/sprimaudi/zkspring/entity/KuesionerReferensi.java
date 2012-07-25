@@ -1,6 +1,7 @@
 package org.sprimaudi.zkspring.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class KuesionerReferensi {
+public class KuesionerReferensi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

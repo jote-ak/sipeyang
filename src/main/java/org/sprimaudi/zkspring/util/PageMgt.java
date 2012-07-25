@@ -65,6 +65,11 @@ public class PageMgt {
         showPage(mainInclude, pagePath, false, mainPanel, false, arg);
     }
 
+    public void showMainOnly(String pagePath, Map<String, Object> arg) {
+
+        showPage(mainInclude, pagePath, false, mainPanel, true, arg);
+    }
+
     public void showMainOnly(String pagePath) {
 
         showPage(mainInclude, pagePath, false, mainPanel, true);
@@ -109,8 +114,6 @@ public class PageMgt {
         if (closeOther) {
             closePanels();
         }
-        System.out.println("arg");
-        System.out.println(arg);
         icl.setDynamicProperty(INCLUDE_PARAM_ATTR, arg);
         icl.setSrc(pagePath);
         Window win = findChildWindow(icl);
@@ -149,9 +152,7 @@ public class PageMgt {
     }
 
     public <T> T windowParam(Class<T> clazz, Window window, String key) {
-        Object odata = window.getDesktop().getExecution().getParameter(INCLUDE_PARAM_ATTR);
-        System.out.println("fetch odata from execution");
-        System.out.println(odata);
+        Object odata = window.getDesktop().getExecution().getAttribute(INCLUDE_PARAM_ATTR);
         if (odata == null)
             return null;
         if (!(odata instanceof Map))
@@ -160,9 +161,5 @@ public class PageMgt {
         if (opar == null)
             return null;
         return (T) opar;
-    }
-
-    public void putWindowParam(Map<String, Object> arg, Window window) {
-        window.setAttribute(WINDOW_PARAM_ATTR, arg);
     }
 }

@@ -1,9 +1,20 @@
 <?page id="mainPage"  title="Sprimaudi"?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window width="100%" height="100%" apply="org.sprimaudi.zkcontroller.main.MainController">
+        <!--<style>-->
+            <!--.listheaderstyle {-->
+                <!--padding: 5px;-->
+                <!--background: #efefef;-->
+                <!--background-image: url(${c:encodeURL('/images/background.jpg')});-->
+            <!--border: #cccccc solid 1px;-->
+            <!--border-top: 0px;-->
+                <!--}-->
+        <!--</style>-->
         <borderlayout style="background:#c5e6ef;">
             <north id="pnlJudul" height="70px"
                    style="background:#c5e6ef;">

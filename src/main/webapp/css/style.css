@@ -1,0 +1,16 @@
+.listheaderstyle {
+    padding: 5px;
+    background: #efefef;
+    background-image: url('/images/background.jpg');
+    border: #cccccc solid 1px;
+    border-top: 0px;
+}
+
+/*.listheaderstyle {*/
+/*padding: 5px;*/
+/*background: #efefef;*/
+/*background-image: url('/images/background.jpg');*/
+/*border: #cccccc solid 1px;*/
+/*border-top: 0px;*/
+/*}*/
+

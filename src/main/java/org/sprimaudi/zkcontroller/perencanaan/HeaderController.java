@@ -1,14 +1,13 @@
 package org.sprimaudi.zkcontroller.perencanaan;
 
+import com.djbc.utilities.StringUtil;
 import org.sprimaudi.zkspring.entity.Droa;
 import org.sprimaudi.zkspring.repository.ReferensiRepository;
 import org.sprimaudi.zkspring.service.DroaService;
 import org.sprimaudi.zkspring.util.Mapper;
 import org.sprimaudi.zkspring.util.PageMgt;
 import org.sprimaudi.zkutil.ReferensiUtil;
-import org.zkoss.zk.ui.Desktop;
 import org.zkoss.zk.ui.Execution;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -78,12 +77,13 @@ public class HeaderController extends SelectorComposer<Window> {
 
     @Listen("onClick=#btnSimpanRencana")
     public void simpan() {
-        Droa droa = extractDroa();
+        Droa droa = extract();
         theDroa = droaService.simpanDroa(droa);
-
+        txtNomor.setText(theDroa.getNomor());
+        txtTanggal.setValue(theDroa.getTanggal());
     }
 
-    public Droa extractDroa() {
+    public Droa extract() {
         Droa droa = new Droa();
         droa.setNomor(txtNomor.getText());
         droa.setTanggal(txtTanggal.getValue());
@@ -92,6 +92,15 @@ public class HeaderController extends SelectorComposer<Window> {
         droa.setTahun(Long.parseLong(txtTahun.getText()));
         droa.setJenis(referensiUtil.fromRadioGrup(jnsAudit));
         return droa;
+    }
+    
+    public void show(Droa droa){
+        txtNomor.setText(droa.getNomor());
+        txtTanggal.setValue(droa.getTanggal());
+        txtKeterangan.setText(droa.getKeterangan());
+        txtTahun.setText(StringUtil.nvl(droa.getTahun()));
+
+
     }
 
     @Listen("onSelect=#lstItemPerencanaan")

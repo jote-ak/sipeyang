@@ -1,6 +1,7 @@
 package org.sprimaudi.zkspring.repository;
 
 import org.sprimaudi.zkspring.entity.Referensi;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -12,4 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ReferensiRepository extends
         CrudRepository<Referensi, Long>, ReferensiRepositoryCustom {
+    @Query("from Referensi r where r.grup=? and kode=?")
+    public Referensi byGrupAndKode(Long grup, String kode);
 }

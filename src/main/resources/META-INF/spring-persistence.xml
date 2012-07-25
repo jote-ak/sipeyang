@@ -6,11 +6,8 @@
                       transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.ejb.naming_strategy"
                       value="org.hibernate.cfg.ImprovedNamingStrategy"/>
-            <!--<property name="hibernate.naming_strategy"-->
-            <!--value="net.sf.hibernate.cfg.ImprovedNamingStrategy"/>-->
             <property name="hibernate.connection.charSet"
                       value="UTF-8"/>
         </properties>

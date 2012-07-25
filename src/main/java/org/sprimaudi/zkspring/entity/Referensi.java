@@ -25,8 +25,9 @@ public class Referensi implements Serializable {
     @Column(length = 512)
     private String keterangan;
     @Column(length = 64)
-    private String nilai;
+    private String isi;
     private Long num;
+    private Long nilai;
     //=====================
     //list of reference type
     //=====================
@@ -92,11 +93,19 @@ public class Referensi implements Serializable {
         this.nama = nama;
     }
 
-    public String getNilai() {
+    public String getIsi() {
+        return isi;
+    }
+
+    public void setIsi(String isi) {
+        this.isi = isi;
+    }
+
+    public Long getNilai() {
         return nilai;
     }
 
-    public void setNilai(String nilai) {
+    public void setNilai(Long nilai) {
         this.nilai = nilai;
     }
 

@@ -44,11 +44,9 @@
                 <property name="database" value="MYSQL"/>
             </bean>
         </property>
-        <property name="packagesToScan" value="org.sprimaudi.zkspring.entity"/>
-        <!--<property name="namingStrategy" ref="namingStrategi"/>-->
+        <!--<property name="packagesToScan" value="org.sprimaudi.zkspring.entity"/>-->
         <property name="persistenceXmlLocation" value="classpath*:META-INF/spring-persistence.xml"/>
     </bean>
-    <!--<bean id="namingStrategy" class="net.sf.hibernate.cfg.ImprovedNamingStrategy"/>-->
     <jpa:repositories
             base-package="org.sprimaudi.zkspring.repository"/>
 

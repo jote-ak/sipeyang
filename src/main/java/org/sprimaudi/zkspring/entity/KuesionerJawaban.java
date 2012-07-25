@@ -1,6 +1,7 @@
 package org.sprimaudi.zkspring.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,7 +11,7 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class KuesionerJawaban {
+public class KuesionerJawaban implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
