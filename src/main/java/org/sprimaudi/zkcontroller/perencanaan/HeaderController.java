@@ -2,6 +2,7 @@ package org.sprimaudi.zkcontroller.perencanaan;
 
 import com.djbc.utilities.StringUtil;
 import org.sprimaudi.zkspring.entity.Droa;
+import org.sprimaudi.zkspring.repository.DroaRepository;
 import org.sprimaudi.zkspring.repository.ReferensiRepository;
 import org.sprimaudi.zkspring.service.DroaService;
 import org.sprimaudi.zkspring.util.Mapper;
@@ -40,10 +41,14 @@ public class HeaderController extends SelectorComposer<Window> {
     Datebox txtTanggal;
 
     private boolean readOnly;
+
     @WireVariable
     DroaService droaService;
     @WireVariable
     ReferensiRepository referensiRepository;
+    @WireVariable
+    DroaRepository droaRepository;
+
     @WireVariable
     ReferensiUtil referensiUtil;
     @WireVariable
@@ -52,6 +57,9 @@ public class HeaderController extends SelectorComposer<Window> {
     private Droa theDroa;
     @Wire
     Listbox lstItemPerencanaan;
+
+    @Wire("window")
+    Window self;
 
 
     @WireVariable
@@ -67,6 +75,8 @@ public class HeaderController extends SelectorComposer<Window> {
         cal.setTime(new Date());
         txtTahun.setText("" + cal.get(Calendar.YEAR));
         manageState();
+        Long idDroa = pgm.windowParam(Long.class, self, "droa");
+        show(idDroa);
     }
 
     private void manageState() {
@@ -93,13 +103,25 @@ public class HeaderController extends SelectorComposer<Window> {
         droa.setJenis(referensiUtil.fromRadioGrup(jnsAudit));
         return droa;
     }
-    
-    public void show(Droa droa){
+
+    public void show(Long idDroa) {
+        if (idDroa == null) {
+            return;
+
+        }
+        Droa droa = droaRepository.findOne(idDroa);
+        show(droa);
+    }
+
+    public void show(Droa droa) {
+        if (droa == null) {
+            return;
+        }
         txtNomor.setText(droa.getNomor());
         txtTanggal.setValue(droa.getTanggal());
         txtKeterangan.setText(droa.getKeterangan());
         txtTahun.setText(StringUtil.nvl(droa.getTahun()));
-
+        referensiUtil.toRadioGrup(jnsAudit, droa.getJenis());
 
     }
 

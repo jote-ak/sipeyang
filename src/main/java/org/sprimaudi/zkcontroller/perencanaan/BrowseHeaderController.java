@@ -68,8 +68,11 @@ public class BrowseHeaderController extends SelectorComposer<Window> {
     public void onListHeaderClick(Event evt) {
         System.out.println("observe listHeader");
         System.out.println(lstHeaderPerencanaan);
-        System.out.println(evt);
-        pgm.showMainOnly("zuls/perencanaan/draft_header.zul", mapper.map("droa", ""));
+
+        pgm.showMainOnly("zuls/perencanaan/draft_header.zul",
+                mapper.map("droa",
+                        ((Droa) ((Listbox) evt.getTarget())
+                                .getSelectedItem().getValue()).getId()));
     }
 
     @Listen("onAfterCreate=window")

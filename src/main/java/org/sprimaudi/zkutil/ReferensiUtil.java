@@ -37,6 +37,9 @@ public class ReferensiUtil {
     }
 
     public void toRadioGrup(Radiogroup radioGrup, Referensi referensi) {
+        if (referensi == null) {
+            return;
+        }
         String sgrup = (String) radioGrup.getAttribute(RADIO_GRUP_KEY);
         Long lgrup = (sgrup != null && !"".equalsIgnoreCase(sgrup)) ?
                 Long.parseLong(sgrup) : null;
@@ -46,7 +49,13 @@ public class ReferensiUtil {
         List<Radio> rads = radioGrup.getItems();
         for (Iterator<Radio> rad = rads.iterator(); rad.hasNext(); ) {
             Radio next = rad.next();
-//                if (StringUtil.nvl)
+            if (next.getValue() != null &&
+                    !"".equals(next.getValue()) &&
+                    next.getValue().equalsIgnoreCase(referensi.getKode())) {
+                next.setSelected(true);
+                return;
+            }
+
         }
 
     }
