@@ -40,13 +40,14 @@ public class ReferensiUtil {
         String sgrup = (String) radioGrup.getAttribute(RADIO_GRUP_KEY);
         Long lgrup = (sgrup != null && !"".equalsIgnoreCase(sgrup)) ?
                 Long.parseLong(sgrup) : null;
-        if (sgrup == null || radioGrup.getSelectedItem() == null) {
+        if (sgrup == null || lgrup != referensi.getGrup()) {
             return;
-            List<Radio> rads = radioGrup.getItems();
-            for (Iterator<Radio> rad = rads.iterator(); rad.hasNext(); ) {
-                Radio next = rad.next();
-//                if (next.getValue())
-            }
         }
+        List<Radio> rads = radioGrup.getItems();
+        for (Iterator<Radio> rad = rads.iterator(); rad.hasNext(); ) {
+            Radio next = rad.next();
+//                if (StringUtil.nvl)
+        }
+
     }
 }
