@@ -7,6 +7,7 @@
             id="winBrowsePerencanaan"
             width="100%"
             apply="org.sprimaudi.zkcontroller.perencanaan.HeaderController">
+        <textbox id="txtIdDroa" visible="false"/>
         <hbox width="100%" widths="49%,2%,49%">
             <vbox width="100%">
                 <label value="Rencana Audit"></label>
@@ -59,8 +60,8 @@
                 <listbox width="100%" hflex="true" id="lstItemPerencanaan">
 
                     <listhead>
-                        <listheader width="60%" label="Auditee"></listheader>
-                        <listheader width="40%" label="Subject"></listheader>
+                        <listheader width="60%" label="Unit"></listheader>
+                        <listheader width="40%" label="Topik"></listheader>
                     </listhead>
                 </listbox>
             </vbox>

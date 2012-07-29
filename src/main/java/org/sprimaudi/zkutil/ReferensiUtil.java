@@ -1,9 +1,13 @@
 package org.sprimaudi.zkutil;
 
+import com.djbc.utilities.Converter;
+import com.djbc.utilities.StringUtil;
 import org.sprimaudi.zkspring.entity.Referensi;
+import org.sprimaudi.zkspring.repository.ReferensiRepository;
 import org.sprimaudi.zkspring.service.ReferensiService;
 import org.springframework.stereotype.Component;
-import org.zkoss.zk.ui.select.annotation.VariableResolver;
+import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Radio;
 import org.zkoss.zul.Radiogroup;
 
@@ -23,10 +27,13 @@ public class ReferensiUtil {
     @Inject
     ReferensiService referensiService;
 
-    private static final String RADIO_GRUP_KEY = "radio_grup_key";
+    @Inject
+    ReferensiRepository referensiRepository;
+
+    private static final String GRUP_KEY = "grup";
 
     public Referensi fromRadioGrup(Radiogroup radioGrup) {
-        String sgrup = (String) radioGrup.getAttribute(RADIO_GRUP_KEY);
+        String sgrup = (String) radioGrup.getAttribute(GRUP_KEY);
         Long lgrup = (sgrup != null && !"".equalsIgnoreCase(sgrup)) ?
                 Long.parseLong(sgrup) : null;
         if (sgrup == null || radioGrup.getSelectedItem() == null) {
@@ -40,7 +47,7 @@ public class ReferensiUtil {
         if (referensi == null) {
             return;
         }
-        String sgrup = (String) radioGrup.getAttribute(RADIO_GRUP_KEY);
+        String sgrup = (String) radioGrup.getAttribute(GRUP_KEY);
         Long lgrup = (sgrup != null && !"".equalsIgnoreCase(sgrup)) ?
                 Long.parseLong(sgrup) : null;
         if (sgrup == null || lgrup != referensi.getGrup()) {
@@ -55,8 +62,48 @@ public class ReferensiUtil {
                 next.setSelected(true);
                 return;
             }
-
         }
+    }
 
+    public void fillCombo(Combobox combo) {
+        combo.getChildren().clear();
+        Long grup = Converter.convertLong(
+                (String) combo.getAttribute(GRUP_KEY));
+        if (grup == null)
+            return;
+        List<Referensi> refs = referensiRepository.byGrup(grup);
+        for (Iterator<Referensi> irefs = refs.iterator(); irefs.hasNext(); ) {
+            Referensi ref = irefs.next();
+            Comboitem ci = new Comboitem(ref.getNama());
+            ci.setValue(ref.getKode());
+            ci.setParent(combo);
+        }
+    }
+
+    public Referensi fromCombo(Combobox combo) {
+        Long grup = Converter.convertLong(
+                (String) combo.getAttribute(GRUP_KEY));
+        if (grup == null)
+            return null;
+        Comboitem ci = combo.getSelectedItem();
+        if (ci == null)
+            return null;
+        String kode = ci.getValue();
+        return referensiRepository.byKodeGrup(kode, grup);
+    }
+
+    public void toCombo(Combobox combo, Referensi referensi) {
+        fillCombo(combo);
+        List<org.zkoss.zk.ui.Component> cis = combo.getChildren();
+        for (Iterator<org.zkoss.zk.ui.Component> iterator = cis.iterator(); iterator.hasNext(); ) {
+            org.zkoss.zk.ui.Component comp = (org.zkoss.zk.ui.Component) iterator.next();
+            if (comp instanceof Comboitem) {
+                Comboitem ci = (Comboitem) comp;
+                if (ci.getValue() != null && ci.getValue().equals(referensi.getKode())) {
+                    //ci.setS
+                }
+            }
+        }
+        combo.setValue(referensi.getKode());
     }
 }

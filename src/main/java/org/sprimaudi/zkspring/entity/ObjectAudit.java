@@ -51,6 +51,8 @@ public class ObjectAudit {
     @OneToMany(targetEntity = PersonalAuditee.class, mappedBy = "objectAudit")
     List<PersonalAuditee> auditess;
 
+    @OneToMany(targetEntity = SuratTugas.class, mappedBy = "objectAudit")
+    List<SuratTugas> suratTugas;
 
     @OneToMany(mappedBy = "objectAudit", targetEntity = Budget.class)
     List<Budget> budget;
@@ -192,5 +194,21 @@ public class ObjectAudit {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    public Droa getDroa() {
+        return droa;
+    }
+
+    public void setDroa(Droa droa) {
+        this.droa = droa;
+    }
+
+    public List<SuratTugas> getSuratTugas() {
+        return suratTugas;
+    }
+
+    public void setSuratTugas(List<SuratTugas> suratTugas) {
+        this.suratTugas = suratTugas;
     }
 }

@@ -16,8 +16,10 @@ public class AnggotaTim {
     private Long id;
     @ManyToOne(targetEntity = Pegawai.class)
     private Pegawai pegawai;
+    @ManyToOne(targetEntity = SuratTugas.class)
+    private SuratTugas suratTugas;
     @ManyToOne(targetEntity = Referensi.class)
-    private Referensi jabatan;
+    private Referensi posisi;
 
     public Long getId() {
         return id;
@@ -35,11 +37,19 @@ public class AnggotaTim {
         this.pegawai = pegawai;
     }
 
-    public Referensi getJabatan() {
-        return jabatan;
+    public Referensi getPosisi() {
+        return posisi;
     }
 
-    public void setJabatan(Referensi jabatan) {
-        this.jabatan = jabatan;
+    public void setPosisi(Referensi posisi) {
+        this.posisi = this.posisi;
+    }
+
+    public SuratTugas getSuratTugas() {
+        return suratTugas;
+    }
+
+    public void setSuratTugas(SuratTugas suratTugas) {
+        this.suratTugas = suratTugas;
     }
 }

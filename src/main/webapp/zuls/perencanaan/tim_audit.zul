@@ -1,0 +1,75 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Tim Audit" border="normal" id="winTimAudit"
+            width="100%"
+            apply="org.sprimaudi.zkcontroller.perencanaan.TimAuditController">
+        <textbox visible="false" id="txtObjectAudit"/>
+        <textbox visible="false" id="txtIdAnggota"/>
+
+        <textbox visible="false" id="txtSt"/>
+        <vbox width="100%" hflex="true">
+            <label value="Rencana Audit"></label>
+            <grid width="100%" hflex="true">
+                <columns>
+                    <column width="30%" valign="top"></column>
+                    <column width="55%" valign="middle"></column>
+                    <column width="15%"></column>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Auditor (Lookup)"></label>
+                        <hbox width="100%" widths="82%,2%,12%">
+                            <textbox id="txtAuditor" width="100%"></textbox>
+                            <vbox></vbox>
+                            <button id="btnAuditor" label="..."></button>
+                        </hbox>
+
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Posisi"></label>
+                        <combobox id="txtPosisi" hflex="true">
+                            <custom-attributes grup="9"/>
+                        </combobox>
+                        <label value=""></label>
+                    </row>
+                    <row>
+                        <label value="Unit"></label>
+                        <textbox id="txtUnit" hflex="true"></textbox>
+                        <label value=""></label>
+                    </row>
+
+                    <row>
+                        <label value="Catatan"></label>
+                        <textbox id="txtCatatan" hflex="true" rows="2"></textbox>
+                        <label value=""></label>
+                    </row>
+                </rows>
+            </grid>
+            <hbox>
+                <button label="+"></button>
+                <button label="edit"></button>
+                <button label="-"></button>
+                <button id="btnSimpanAnggota" label="simpan"></button>
+            </hbox>
+            <listbox id="lstAuditor">
+                <listhead>
+                    <listheader label="Nama" width="40%"></listheader>
+                    <listheader label="Jabatan" width="30%"></listheader>
+                    <listheader label="Unit" width="30%"></listheader>
+                </listhead>
+            </listbox>
+
+            <h:div style="font:10px verdana;color:gray">
+                Keterangan form tim audit:
+                <h:br/>
+                Form ini digunakan untuk create new, editing, dan view / show detail dokumen rencana audit.
+                <h:br/>
+                layout yang sama digunakan juga untuk perencanaan budget,
+                rencana penugasan auditor dan pemilihan questionaire
+            </h:div>
+        </vbox>
+    </window>
+</zk>

@@ -1,8 +1,12 @@
 package org.sprimaudi.zkcontroller.perencanaan;
 
+import com.djbc.utilities.Converter;
 import com.djbc.utilities.StringUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.sprimaudi.zkspring.entity.Droa;
+import org.sprimaudi.zkspring.entity.ObjectAudit;
 import org.sprimaudi.zkspring.repository.DroaRepository;
+import org.sprimaudi.zkspring.repository.ObjectAuditRepository;
 import org.sprimaudi.zkspring.repository.ReferensiRepository;
 import org.sprimaudi.zkspring.service.DroaService;
 import org.sprimaudi.zkspring.util.Mapper;
@@ -18,9 +22,8 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.DelegatingVariableResolver;
 import org.zkoss.zul.*;
 
+import java.util.*;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -36,7 +39,7 @@ public class HeaderController extends SelectorComposer<Window> {
     @Wire
     Radiogroup jnsAudit;
     @Wire
-    Textbox txtNomor, txtTahun, txtKeterangan;
+    Textbox txtNomor, txtTahun, txtKeterangan, txtIdDroa;
     @Wire
     Datebox txtTanggal;
 
@@ -48,6 +51,8 @@ public class HeaderController extends SelectorComposer<Window> {
     ReferensiRepository referensiRepository;
     @WireVariable
     DroaRepository droaRepository;
+    @WireVariable
+    ObjectAuditRepository objectAuditRepository;
 
     @WireVariable
     ReferensiUtil referensiUtil;
@@ -77,6 +82,16 @@ public class HeaderController extends SelectorComposer<Window> {
         manageState();
         Long idDroa = pgm.windowParam(Long.class, self, "droa");
         show(idDroa);
+        lstItemPerencanaan.setItemRenderer(new ListitemRenderer<ObjectAudit>() {
+            @Override
+            public void render(Listitem listitem, ObjectAudit o, int i) throws Exception {
+                new Listcell((o.getUnit() != null) ? o.getUnit().getNama() : "").setParent(listitem);
+                new Listcell(StringUtil.nvl(o.getTopik())).setParent(listitem);
+                listitem.setValue(o);
+
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
+        });
     }
 
     private void manageState() {
@@ -101,16 +116,18 @@ public class HeaderController extends SelectorComposer<Window> {
         //TODO  Consider to use former Converter.
         droa.setTahun(Long.parseLong(txtTahun.getText()));
         droa.setJenis(referensiUtil.fromRadioGrup(jnsAudit));
+        System.out.println("observer nilai default value convertoer");
+        System.out.println(Converter.convertLong(txtIdDroa.getText()));
+        droa.setId(Converter.convertLong(txtIdDroa.getText()));
         return droa;
     }
 
     public void show(Long idDroa) {
         if (idDroa == null) {
             return;
-
         }
-        Droa droa = droaRepository.findOne(idDroa);
-        show(droa);
+        theDroa = droaRepository.findOne(idDroa);
+        show(theDroa);
     }
 
     public void show(Droa droa) {
@@ -122,20 +139,34 @@ public class HeaderController extends SelectorComposer<Window> {
         txtKeterangan.setText(droa.getKeterangan());
         txtTahun.setText(StringUtil.nvl(droa.getTahun()));
         referensiUtil.toRadioGrup(jnsAudit, droa.getJenis());
+        txtIdDroa.setText(StringUtil.nvl(droa.getId()));
+        prepareList();
 
     }
 
     @Listen("onSelect=#lstItemPerencanaan")
     public void onListSelect(Event evt) {
-
+        pgm.broadcast("onShowObjectAudit",
+                mapper.map("droa", theDroa.getId())
+                        .map("objectAudit",
+                                ((ObjectAudit) lstItemPerencanaan
+                                        .getSelectedItem().getValue()).getId())
+                        .map("edit", true));
     }
 
     @Listen("onClick=#btnEditRencana")
     public void onEditRencana(Event event) {
-        Map<String, Object> m = mapper.map("droa", theDroa)
-                .map("tes", "Value");
-        pgm.showNav("zuls/perencanaan/draft_header_sider.zul", m);
-        pgm.showProp("zuls/perencanaan/browse_draft_detail_sider.zul", m);
-        pgm.showMain("zuls/perencanaan/draft_detail.zul", m);
+        Map<String, Object> m = mapper
+                .map("droa", (theDroa != null) ? theDroa.getId() : null)
+                .map("edit", true);
+        pgm.broadcast("onShowObjectAudit", m);
+    }
+
+    public void prepareList() {
+        List<ObjectAudit> oas = new ArrayList<ObjectAudit>();
+        CollectionUtils.addAll(oas, objectAuditRepository.findByDroa(theDroa.getId()).iterator());
+        lstItemPerencanaan.setModel(
+                new ListModelList<ObjectAudit>(oas, true)
+        );
     }
 }

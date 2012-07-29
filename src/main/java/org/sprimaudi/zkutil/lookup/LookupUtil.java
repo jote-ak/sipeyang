@@ -51,6 +51,11 @@ public abstract class LookupUtil<T, L> implements ListitemRenderer<T> {
         return null;
     }
 
+    public void setValue(Textbox textbox, T value) {
+        textbox.setText((value != null) ? getDisplayer(value) : "");
+        textbox.setAttribute(TXT_KEY, (value != null) ? getKey(value) : null);
+    }
+
     public Window showLookup(Textbox textbox) {
         final Window w = (Window) Executions.createComponents("zuls/main/lookup.zul", null, null);
         lbx = (Listbox) w.getFellowIfAny("lstLookup");

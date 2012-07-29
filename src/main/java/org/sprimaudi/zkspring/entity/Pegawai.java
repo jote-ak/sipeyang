@@ -32,4 +32,68 @@ public class Pegawai implements Serializable {
     List<Budget> auditees;
     @OneToMany(mappedBy = "pegawai", targetEntity = AnggotaTim.class)
     List<AnggotaTim> anggotaTimByPegawai;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    public Referensi getPangkat() {
+        return pangkat;
+    }
+
+    public void setPangkat(Referensi pangkat) {
+        this.pangkat = pangkat;
+    }
+
+    public Referensi getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(Referensi jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public List<Budget> getAuditees() {
+        return auditees;
+    }
+
+    public void setAuditees(List<Budget> auditees) {
+        this.auditees = auditees;
+    }
+
+    public List<AnggotaTim> getAnggotaTimByPegawai() {
+        return anggotaTimByPegawai;
+    }
+
+    public void setAnggotaTimByPegawai(List<AnggotaTim> anggotaTimByPegawai) {
+        this.anggotaTimByPegawai = anggotaTimByPegawai;
+    }
 }

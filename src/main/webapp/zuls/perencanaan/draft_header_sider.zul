@@ -3,33 +3,35 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window id="winBrowsePerencanaan"
-            width="100%" height="100%">
+            width="100%" height="100%"
+            apply="org.sprimaudi.zkcontroller.perencanaan.HeaderSiderController">
         <vbox width="100%">
             <label value="Rencana Audit"></label>
 
             <label value="Nomor"></label>
-            <textbox hflex="true"></textbox>
+            <textbox id="txtNomorDroa" hflex="true"></textbox>
             <h:div style="border-bottom:1px #efefef solid"></h:div>
             <!---->
             <label value="Tanggal"></label>
-            <datebox format="dd-MM-yyyy" hflex="true"></datebox>
+            <datebox id="txtTanggalDroa" format="dd-MM-yyyy" hflex="true"></datebox>
             <h:div style="border-bottom:1px #efefef solid"></h:div>
 
             <label value="Tahun"></label>
-            <textbox width="80px"></textbox>
+            <textbox id="txtTahunDroa" width="80px"></textbox>
             <h:div style="border-bottom:1px #efefef solid"></h:div>
 
             <label value="Jenis Audit"></label>
             <vbox>
-                <radiogroup>
-                    <radio label="Annual" selected="true"></radio>
-                    <radio label="Khusus"></radio>
+                <radiogroup id="jenisAudit">
+                    <custom-attributes grup="2"/>
+                    <radio value="AN" label="Annual" selected="true"></radio>
+                    <radio value="KH" label="Khusus"></radio>
                 </radiogroup>
             </vbox>
             <h:div style="border-bottom:1px #efefef solid"></h:div>
 
             <label value="Keterangan"></label>
-            <textbox hflex="true" rows="3"></textbox>
+            <textbox id="txtKeteranganDroa" hflex="true" rows="3"></textbox>
 
         </vbox>
 

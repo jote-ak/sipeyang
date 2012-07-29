@@ -1,8 +1,14 @@
 package org.sprimaudi.zkcontroller.perencanaan;
 
+import com.djbc.utilities.Converter;
+import com.djbc.utilities.StringUtil;
+import org.sprimaudi.zkspring.entity.Droa;
 import org.sprimaudi.zkspring.entity.ObjectAudit;
+import org.sprimaudi.zkspring.repository.DroaRepository;
+import org.sprimaudi.zkspring.repository.ObjectAuditRepository;
 import org.sprimaudi.zkspring.repository.UnitRepository;
 import org.sprimaudi.zkspring.service.ObjectAuditService;
+import org.sprimaudi.zkspring.util.Mapper;
 import org.sprimaudi.zkspring.util.PageMgt;
 import org.sprimaudi.zkutil.ReferensiUtil;
 import org.sprimaudi.zkutil.lookup.LookupUtil;
@@ -32,11 +38,15 @@ import java.util.HashMap;
  */
 @VariableResolver(DelegatingVariableResolver.class)
 public class ObjectAuditController extends SelectorComposer<Window> {
+
+    public static final String zulpath = "zuls/perencanaan/draft_detail.zul";
+    private Droa theDroa;
+    private ObjectAudit theObjectAudit;
     @Wire
     Window self;
 
     @Wire
-    Textbox txtUnit, txtAlasan, txtKeterangan, txtTopikObjectAudit;
+    Textbox txtUnit, txtAlasan, txtKeterangan, txtTopikObjectAudit, txtObjectAudit;
     @Wire
     Datebox txtAwalObjectAudit, txtAkhirObjectAudit;
 
@@ -47,8 +57,13 @@ public class ObjectAuditController extends SelectorComposer<Window> {
     ObjectAuditService objectAuditService;
 
     @WireVariable
-    UnitLookuper unitLookuper;
+    ObjectAuditRepository objectAuditRepository;
 
+    @WireVariable
+    DroaRepository droaRepository;
+
+    @WireVariable
+    UnitLookuper unitLookuper;
 
     @WireVariable
     ReferensiUtil referensiUtil;
@@ -59,12 +74,32 @@ public class ObjectAuditController extends SelectorComposer<Window> {
     @Override
     public void doAfterCompose(Window comp) throws Exception {
         super.doAfterCompose(comp);    //To change body of overridden methods use File | Settings | File Templates.
-        System.out.println("observe windows param");
-        System.out.println(pgm.windowParam(String.class, comp, "tes"));
+
     }
+
+    @Listen("onAfterCreate=window")
+    public void onAfterCreate(Event evt) {
+        Long idDroa = pgm.eventParam(Long.class, evt, "droa");
+        if (idDroa != null) {
+            theDroa = droaRepository.findOne(idDroa);
+        }
+        Long idObjectAudit = pgm.eventParam(Long.class, evt, "objectAudit");
+        if (idObjectAudit != null) {
+            if (idObjectAudit == 0L) {
+                //0 Represent new object
+                theObjectAudit = new ObjectAudit();
+            } else {
+                theObjectAudit = objectAuditRepository.findOne(idObjectAudit);
+                theDroa = theObjectAudit.getDroa();
+            }
+            show(theObjectAudit);
+        }
+    }
+
 
     private ObjectAudit extract() {
         ObjectAudit oa = new ObjectAudit();
+        oa.setId(Converter.convertLong(txtObjectAudit.getText()));
         oa.setAlasan(txtAlasan.getText());
         oa.setKeterangan(txtKeterangan.getText());
         oa.setAuditeeJenis(referensiUtil.fromRadioGrup(jnsAuditee));
@@ -72,14 +107,40 @@ public class ObjectAuditController extends SelectorComposer<Window> {
         oa.setAwal(txtAwalObjectAudit.getValue());
         oa.setAkhir(txtAkhirObjectAudit.getValue());
         oa.setTopik(txtTopikObjectAudit.getText());
-
         return oa;
     }
 
+    private void show(ObjectAudit oa) {
+        if (oa == null) return;
+        txtObjectAudit.setText(StringUtil.nvl(oa.getId()));
+        txtAlasan.setText(StringUtil.nvl(oa.getAlasan()));
+        txtKeterangan.setText(StringUtil.nvl(oa.getKeterangan()));
+        referensiUtil.toRadioGrup(jnsAuditee, oa.getAuditeeJenis());
+        txtAwalObjectAudit.setValue(oa.getAwal());
+        txtAkhirObjectAudit.setValue(oa.getAkhir());
+        txtTopikObjectAudit.setText(StringUtil.nvl(oa.getTopik()));
+        unitLookuper.setValue(txtUnit, oa.getUnit());
+        //TODO how to set unit reference ?
+    }
+
+    private void show(Long idObjectAudit) {
+        if (idObjectAudit == null) {
+            return;
+        }
+        theObjectAudit = objectAuditRepository.findOne(idObjectAudit);
+        show(theObjectAudit);
+    }
+
+    @WireVariable
+    Mapper mapper;
+
     @Listen("onClick=#btnSimpanObjectAudit")
     public void simpanObjectAudit(Event evt) {
-        objectAuditService.simpan(extract());
-        alert("penyimpanan berhasil,.  apa nggak ya ?");
+        theObjectAudit = objectAuditService.simpan(extract());
+        objectAuditService.addToDroa(theDroa, theObjectAudit);
+        alert("penyimpanan berhasil,");
+        pgm.showProp(BrowseObjectAuditSiderController.zulpath,
+                mapper.map("droa", theDroa.getId()));
     }
 
     @Listen("onClick=#btnUnitObjectAudit")

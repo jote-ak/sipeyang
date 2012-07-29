@@ -4,6 +4,8 @@ import org.sprimaudi.zkspring.entity.Referensi;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: jote
@@ -15,4 +17,7 @@ public interface ReferensiRepository extends
         CrudRepository<Referensi, Long>, ReferensiRepositoryCustom {
     @Query("from Referensi r where r.grup=? and kode=?")
     public Referensi byGrupAndKode(Long grup, String kode);
+
+    @Query("from Referensi r where r.grup=?")
+    public List<Referensi> byGrup(Long grup);
 }

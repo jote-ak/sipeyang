@@ -32,6 +32,8 @@ public class MainController extends SelectorComposer<Window> {
     West navPanel;
     @Wire
     Center mainPanel;
+    @Wire("window")
+    Window self;
 
 
     @Override
@@ -40,6 +42,7 @@ public class MainController extends SelectorComposer<Window> {
         if (pgm != null) {
             pgm.initInclude(mainInclude, subInclude, navInclude, propInclude);
             pgm.initPanel(mainPanel, subPanel, navPanel, propPanel);
+            pgm.initWindow(self);
         }
     }
 

@@ -47,8 +47,8 @@ public class Referensi implements Serializable {
     List<ObjectAudit> objectAuditByJabatan;
     @OneToMany(mappedBy = "jenis", targetEntity = Budget.class)
     List<Budget> budgetByJenis;
-    @OneToMany(mappedBy = "jabatan", targetEntity = AnggotaTim.class)
-    List<AnggotaTim> AnggotaTimByJabatan;
+    @OneToMany(mappedBy = "posisi", targetEntity = AnggotaTim.class)
+    List<AnggotaTim> AnggotaTimByPosisi;
 
     @OneToMany(mappedBy = "jenis", targetEntity = KuesionerReferensi.class)
     List<KuesionerReferensi> kuesionerByJenis;

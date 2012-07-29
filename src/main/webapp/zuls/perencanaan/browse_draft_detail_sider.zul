@@ -3,24 +3,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window id="winBrowsePerencanaan"
-            width="100%" height="100%">
+            width="100%" height="100%"
+            apply="org.sprimaudi.zkcontroller.perencanaan.BrowseObjectAuditSiderController">
 
-        <listbox id="lstHeaderPerencanaan">
+        <listbox id="lstObjectAudit">
             <listhead>
                 <listheader width="100%" label="Auditee"></listheader>
             </listhead>
-            <listitem>
-                <listcell label="HRD Dept"></listcell>
-            </listitem>
-            <listitem>
-                <listcell label="IT Dept"></listcell>
-            </listitem>
-            <listitem>
-                <listcell label="Cabang Bandung"></listcell>
-            </listitem>
-            <listitem>
-                <listcell label="Cabang Surabaya"></listcell>
-            </listitem>
         </listbox>
+        <hbox>
+            <button id="btnAdd" label="+"/>
+            <button id="btnEdit" label="edit"/>
+            <button id="btnTim" label="tim"/>
+        </hbox>
     </window>
 </zk>

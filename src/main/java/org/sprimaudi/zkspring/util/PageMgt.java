@@ -32,6 +32,10 @@ public class PageMgt {
     public South subPanel;
     public West navPanel;
     public East propPanel;
+
+    public Window mainWindow;
+
+
     private static final String WINDOW_PARAM_ATTR = "window_param_attr";
     private static final String INCLUDE_PARAM_ATTR = "include_param_attr";
 
@@ -52,6 +56,11 @@ public class PageMgt {
         this.subPanel = subPanel;
         this.navPanel = navPanel;
         this.propPanel = propPanel;
+    }
+
+
+    public void initWindow(Window mainWindow) {
+        this.mainWindow = mainWindow;
     }
 
 
@@ -141,6 +150,8 @@ public class PageMgt {
 
     public <T> T eventParam(Class<T> clazz, Event event, String key) {
         Object odata = event.getData();
+        System.out.println("observe event param");
+        System.out.println(odata);
         if (odata == null)
             return null;
         if (!(odata instanceof Map))
@@ -161,5 +172,13 @@ public class PageMgt {
         if (opar == null)
             return null;
         return (T) opar;
+    }
+
+    public void broadcast(String eventName, Map<String, Object> args) {
+        Events.echoEvent(eventName, this.mainWindow, args);
+    }
+
+    public Map<String, Object> forward(Event evt) {
+        return (Map<String, Object>) evt.getData();
     }
 }
