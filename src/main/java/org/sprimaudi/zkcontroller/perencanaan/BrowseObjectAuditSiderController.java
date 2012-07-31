@@ -91,7 +91,7 @@ public class BrowseObjectAuditSiderController extends SelectorComposer<Window> {
                         .map("edit", true));
     }
 
-    @Listen("onClick=#btnEdit")
+    @Listen("onClick=#miEdit")
     public void onEdit(Event evt) {
         if (lstObjectAudit.getSelectedCount() > 0) {
             ObjectAudit oa = (ObjectAudit) lstObjectAudit.getSelectedItem().getValue();
@@ -104,9 +104,37 @@ public class BrowseObjectAuditSiderController extends SelectorComposer<Window> {
 
     }
 
-    @Listen("onClick=#btnTim")
+    @Listen("onClick=#miTim")
     public void onTim(Event evt) {
-        pgm.showMain(TimAuditController.zulpath, mapper.map("tes", ""));
+        if (lstObjectAudit.getSelectedItem() != null && lstObjectAudit.getSelectedItem().getValue() != null) {
+            pgm.showMain(TimAuditController.zulpath, mapper
+                    .map("objectAudit", ((ObjectAudit) lstObjectAudit.getSelectedItem().getValue()).getId()));
+        } else {
+            alert("Not Any Object Audit Selected, please select one");
+        }
+
+    }
+
+    @Listen("onClick=#miBudget")
+    public void onBudget(Event evt) {
+        if (lstObjectAudit.getSelectedItem() != null && lstObjectAudit.getSelectedItem().getValue() != null) {
+            pgm.showMain(BudgetRencanaController.zulpath, mapper
+                    .map("objectAudit", ((ObjectAudit) lstObjectAudit.getSelectedItem().getValue()).getId()));
+        } else {
+            alert("Not Any Object Audit Selected, please select one");
+        }
+
+    }
+
+    @Listen("onClick=#miChecklist")
+    public void miChecklist(Event evt) {
+        if (lstObjectAudit.getSelectedItem() != null && lstObjectAudit.getSelectedItem().getValue() != null) {
+            pgm.showMain(RencanaChecklistController.zulpath, mapper
+                    .map("objectAudit", ((ObjectAudit) lstObjectAudit.getSelectedItem().getValue()).getId()));
+        } else {
+            alert("Not Any Object Audit Selected, please select one");
+        }
+
     }
 
     public void prepareList() {

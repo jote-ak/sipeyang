@@ -50,8 +50,9 @@
                     </menu>
                 </menupopup>
             </menu>
-            <menu id="Master Data" label="Admin">
+            <menu id="Master Data" label="Master Data">
                 <menupopup>
+                    <menuitem id="mnChecklist" label="Referensi Cheklist"/>
                     <menuitem id="Daftar Auditor" label="Setting Agenda"/>
                     <menuitem id="Daftar Auditee" label="Setting Agenda"/>
                     <!--                    <menuitem id="mnAbout" label="About"/>-->

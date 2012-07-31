@@ -41,6 +41,8 @@ public class SuratTugas {
     private String primer;
     @OneToMany(targetEntity = AnggotaTim.class, mappedBy = "suratTugas")
     private List<AnggotaTim> tim;
+    @OneToMany(targetEntity = BudgetHeader.class, mappedBy = "suratTugas")
+    private List<BudgetHeader> budgetByST;
 
     @ManyToOne(targetEntity = ObjectAudit.class)
     private ObjectAudit objectAudit;

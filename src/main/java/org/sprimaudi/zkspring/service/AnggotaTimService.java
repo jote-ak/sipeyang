@@ -25,6 +25,8 @@ public class AnggotaTimService {
     SuratTugasRepository suratTugasRepository;
 
     public AnggotaTim simpan(AnggotaTim anggota) {
+        System.out.println("objserve posisi anggota");
+        System.out.println(anggota.getPosisi());
         anggota = anggotaTimRepository.save(anggota);
         return anggota;
     }

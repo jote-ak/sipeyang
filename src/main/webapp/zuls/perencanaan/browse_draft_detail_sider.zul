@@ -6,15 +6,21 @@
             width="100%" height="100%"
             apply="org.sprimaudi.zkcontroller.perencanaan.BrowseObjectAuditSiderController">
 
-        <listbox id="lstObjectAudit">
+        <listbox id="lstObjectAudit" context="oaContext">
             <listhead>
                 <listheader width="100%" label="Auditee"></listheader>
             </listhead>
         </listbox>
         <hbox>
             <button id="btnAdd" label="+"/>
-            <button id="btnEdit" label="edit"/>
-            <button id="btnTim" label="tim"/>
+
         </hbox>
+        <menupopup id="oaContext">
+            <!--<menuitem label="Tambah Object Audit"></menuitem>-->
+            <menuitem id="miEdit" label="Edit"></menuitem>
+            <menuitem id="miTim" label="Tim Audit"></menuitem>
+            <menuitem id="miBudget" label="Budgeting"></menuitem>
+            <menuitem id="miChecklist"  label="Checklist"></menuitem>
+        </menupopup>
     </window>
 </zk>

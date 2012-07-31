@@ -6,7 +6,7 @@
             height="450px" id="winMenu" contentStyle="overflow:auto"
             >
         <hbox width="100%" widths="80%,2%,18%">
-            <textbox id="txtLookupCari" width="100%" hflex="true"></textbox>
+            <textbox id="txtLookupCari" width="100%" hflex="true" value="%"></textbox>
             <label value=" "></label>
             <button id="btnLookupCari" label="search"></button>
         </hbox>

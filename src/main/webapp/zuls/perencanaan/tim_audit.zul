@@ -42,17 +42,19 @@
                     </row>
 
                     <row>
-                        <label value="Catatan"></label>
-                        <textbox id="txtCatatan" hflex="true" rows="2"></textbox>
+                        <label value="Keterangan"></label>
+                        <textbox id="txtKeterangan" hflex="true" rows="2"></textbox>
                         <label value=""></label>
                     </row>
                 </rows>
             </grid>
             <hbox>
-                <button label="+"></button>
-                <button label="edit"></button>
-                <button label="-"></button>
+                <button id="btnAddAnggota" label="+"></button>
+                <button id="btnEditAnggota" label="edit"></button>
+                <button id="btnDeleteAnggota" label="-"></button>
                 <button id="btnSimpanAnggota" label="simpan"></button>
+                <button id="btnCancel" label="simpan"></button>
+                <button id="btnRefreshAnggota" label="refresh"></button>
             </hbox>
             <listbox id="lstAuditor">
                 <listhead>

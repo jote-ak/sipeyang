@@ -76,6 +76,11 @@ public class MenuController extends SelectorComposer<Window> {
         pgm.showMainOnly("zuls/perencanaan/browse_perencanaan.zul");
     }
 
+    @Listen("onClick=#mnChecklist")
+    public void mnChecklist() {
+        pgm.showMainOnly("zuls/masterdata/checklist_referensi.zul");
+    }
+
     @Listen("onCreate=window")
     public void onMenu() {
     }

@@ -18,24 +18,26 @@ import java.util.List;
  */
 @Component(value = "lookupUtil")
 public abstract class LookupUtil<T, L> implements ListitemRenderer<T> {
-    private T selected;
-    private Listbox lbx;
-    private Button btnLookupClose, btnLookupCari, btnLookupCancel;
-    private Textbox txtCari, txtTarget;
+    public static final String LST_LOOKUP = "lstLookup";
+    //    private T selected;
+    //    private Listbox lbx;
+//    private Button btnLookupClose, btnLookupCari, btnLookupCancel;
+//    private Textbox txtCari, txtTarget;
     private final static String TXT_DISPLAY = "textlookupdisplay";
     private final static String TXT_KEY = "textlookupkey";
+    public static final String TXT_LOOKUP_CARI = "txtLookupCari";
 
 
-    public Window showLookup() {
+    public LookupWindow<T> showLookup() {
         return showLookup(null);
 
     }
 
-    public void storeValue(Textbox text) {
-        if (text != null) {
-            text.setAttribute(TXT_KEY, getKey(selected));
-        }
-    }
+//    public void storeValue(Textbox text) {
+//        if (text != null) {
+//            text.setAttribute(TXT_KEY, getKey(selected));
+//        }
+//    }
 
     public T getValue(Textbox text) {
         if (text != null) {
@@ -56,13 +58,14 @@ public abstract class LookupUtil<T, L> implements ListitemRenderer<T> {
         textbox.setAttribute(TXT_KEY, (value != null) ? getKey(value) : null);
     }
 
-    public Window showLookup(Textbox textbox) {
-        final Window w = (Window) Executions.createComponents("zuls/main/lookup.zul", null, null);
-        lbx = (Listbox) w.getFellowIfAny("lstLookup");
-        txtCari = (Textbox) w.getFellowIfAny("txtLookupCari");
-        btnLookupCari = (Button) w.getFellowIfAny("btnLookupCari");
-        btnLookupClose = (Button) w.getFellowIfAny("btnLookupClose");
-        btnLookupCancel = (Button) w.getFellowIfAny("btnLookupCancel");
+    public LookupWindow<T> showLookup(Textbox textbox) {
+        Window w = (Window) Executions.createComponents("zuls/main/lookup.zul", null, null);
+        LookupWindow<T> win = new LookupWindow<T>(w);
+        Listbox lbx = (Listbox) w.getFellowIfAny(LST_LOOKUP);
+        Textbox txtCari = (Textbox) w.getFellowIfAny(TXT_LOOKUP_CARI);
+        Button btnLookupCari = (Button) w.getFellowIfAny("btnLookupCari");
+        Button btnLookupClose = (Button) w.getFellowIfAny("btnLookupClose");
+        Button btnLookupCancel = (Button) w.getFellowIfAny("btnLookupCancel");
         lbx.setItemRenderer(this);
         List<LookupColumn> lcs = Arrays.asList(getColumns());
         System.out.println("jumlah yang terdaftar" + lcs.size());
@@ -75,23 +78,63 @@ public abstract class LookupUtil<T, L> implements ListitemRenderer<T> {
         lbx.addEventListener("onSelect", new EventListener<Event>() {
             @Override
             public void onEvent(Event event) throws Exception {
+                System.out.println("observer listbox pareng");
+                Listbox lbx = (Listbox) event.getTarget();
+                Window w = (Window) lbx.getParent();
                 if (lbx != null && lbx.getSelectedItem() != null) {
-                    System.out.println("this is when on select");
-                    selected = (T) lbx.getSelectedItem().getValue();
-                    Object oText = lbx.getAttribute(TXT_DISPLAY);
-                    if (oText != null && oText instanceof Textbox) {
-                        Textbox txt = (Textbox) oText;
-                        txt.setText(getDisplayer(selected));
-
-                        txt.setAttribute(TXT_KEY, getKey(selected));
-                    }
+                    T selected = (T) lbx.getSelectedItem().getValue();
+                    LookupWindow.setSelected(selected, w);
+//                    Object oText = lbx.getAttribute(TXT_DISPLAY);
+//                    if (oText != null && oText instanceof Textbox) {
+//                        Textbox txt = (Textbox) oText;
+//                        txt.setText(getDisplayer(selected));
+//                        txt.setAttribute(TXT_KEY, getKey(selected));
+//                    }
                 }
+
+            }
+        });
+        lbx.addEventListener("onAfterRender", new EventListener<Event>() {
+            @Override
+            public void onEvent(Event event) throws Exception {
+                //To change body of implemented methods use File | Settings | File Templates.
+                Listbox lbx = (Listbox) event.getTarget();
+                lbx.focus();
+            }
+        });
+        lbx.addEventListener("onOK", new EventListener<Event>() {
+            @Override
+            public void onEvent(Event event) throws Exception {
+                //To change body of implemented methods use File | Settings | File Templates.
+                Listbox lbx = (Listbox) event.getTarget();
+                Window w = (Window) lbx.getParent();
+                LookupWindow<T> lw = LookupWindow.getLookupWindow(w);
+                Object oText = lbx.getAttribute(TXT_DISPLAY);
+                if (oText != null && oText instanceof Textbox) {
+                    Textbox txt = (Textbox) oText;
+                    txt.setText(getDisplayer(lw.getSelected()));
+                    txt.setAttribute(TXT_KEY, getKey(lw.getSelected()));
+                }
+                w.detach();
+            }
+        });
+        txtCari.addEventListener("onOK", new EventListener<Event>() {
+            @Override
+            public void onEvent(Event event) throws Exception {
+                //To change body of implemented methods use File | Settings | File Templates.
+                Textbox txtCari = (Textbox) event.getTarget();
+                Listbox lbx = (Listbox) txtCari.getFellowIfAny(LST_LOOKUP);
+                List<T> model = getModel(txtCari.getText());
+                lbx.setModel(new ListModelList<T>(model));
 
             }
         });
         btnLookupCari.addEventListener("onClick", new EventListener<Event>() {
             @Override
             public void onEvent(Event event) throws Exception {
+                Button btn = (Button) event.getTarget();
+                Listbox lbx = (Listbox) btn.getFellowIfAny(LST_LOOKUP);
+                Textbox txtCari = (Textbox) btn.getFellowIfAny(TXT_LOOKUP_CARI);
                 List<T> model = getModel(txtCari.getText());
                 lbx.setModel(new ListModelList<T>(model));
             }
@@ -99,11 +142,46 @@ public abstract class LookupUtil<T, L> implements ListitemRenderer<T> {
         btnLookupClose.addEventListener("onClick", new EventListener<Event>() {
             @Override
             public void onEvent(Event event) throws Exception {
+                Button btn = (Button) event.getTarget();
+                Listbox lbx = (Listbox) btn.getFellowIfAny(LST_LOOKUP);
+                Window w = (Window) lbx.getParent();
+                LookupWindow<T> lw = LookupWindow.getLookupWindow(w);
+                Object oText = lbx.getAttribute(TXT_DISPLAY);
+                if (oText != null && oText instanceof Textbox) {
+                    Textbox txt = (Textbox) oText;
+                    txt.setText(getDisplayer(lw.getSelected()));
+                    txt.setAttribute(TXT_KEY, getKey(lw.getSelected()));
+                }
+                w.detach();
+            }
+        });
+        w.addEventListener("onCancel", new EventListener<Event>() {
+            @Override
+            public void onEvent(Event event) throws Exception {
+                //To change body of implemented methods use File | Settings | File Templates.
+                Window w = (Window) event.getTarget();
+                w.detach();
+            }
+        });
+        btnLookupCancel.addEventListener("onClick", new EventListener<Event>() {
+            @Override
+            public void onEvent(Event event) throws Exception {
+                Button btn = (Button) event.getTarget();
+                Listbox lbx = (Listbox) btn.getFellowIfAny(LST_LOOKUP);
+                Window w = (Window) btn.getParent().getParent();//btn >> hbox >> window
+//                LookupWindow.setSelected(null, w);
+//                LookupWindow<T> lw = LookupWindow.getLookupWindow(w);
+//                Object oText = lbx.getAttribute(TXT_DISPLAY);
+//                if (oText != null && oText instanceof Textbox) {
+//                    Textbox txt = (Textbox) oText;
+//                    txt.setText(getDisplayer(lw.getSelected()));
+//                    txt.setAttribute(TXT_KEY, getKey(lw.getSelected()));
+//                }
                 w.detach();
             }
         });
         w.setClosable(true);
-        return w;
+        return win;
     }
 
     public abstract void rendering(Listitem listitem, T t, int i) throws Exception;
@@ -135,8 +213,8 @@ public abstract class LookupUtil<T, L> implements ListitemRenderer<T> {
 
     public abstract LookupColumn[] getColumns();
 
-    public T getSelected() {
-        return selected;
-    }
+//    public T getSelected() {
+//        return selected;
+//    }
 
 }

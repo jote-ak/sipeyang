@@ -20,6 +20,8 @@ public class AnggotaTim {
     private SuratTugas suratTugas;
     @ManyToOne(targetEntity = Referensi.class)
     private Referensi posisi;
+    @Column(length = 128)
+    private String keterangan;
 
     public Long getId() {
         return id;
@@ -42,7 +44,7 @@ public class AnggotaTim {
     }
 
     public void setPosisi(Referensi posisi) {
-        this.posisi = this.posisi;
+        this.posisi = posisi;
     }
 
     public SuratTugas getSuratTugas() {
@@ -51,5 +53,13 @@ public class AnggotaTim {
 
     public void setSuratTugas(SuratTugas suratTugas) {
         this.suratTugas = suratTugas;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 }

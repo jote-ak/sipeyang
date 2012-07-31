@@ -1,0 +1,38 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Rancangan Cheklist (Kuesioner" border="normal" id="winTimAudit"
+            width="100%">
+        <vbox width="100%">
+            <groupbox>
+                <caption width="100%" label="Referensi"/>
+                <listbox>
+                    <listhead>
+                        <listheader label="Referensi" width="100%"/>
+                    </listhead>
+                </listbox>
+            </groupbox>
+            <vbox/>
+            <groupbox>
+                <caption width="100%" label="Kuesioner"/>
+                <listbox>
+                    <listhead>
+                        <listheader label="Kuesioner" width="100%"/>
+                    </listhead>
+                    <listitem>
+                        <listcell>
+                            <div>
+                                <label value="Kategori"/>
+                                <h:br/>
+                                <label value="Objektif"/>
+                                <h:br/>
+                                <label value="Ini adalah Kusioner"/>
+                            </div>
+                        </listcell>
+                    </listitem>
+                </listbox>
+            </groupbox>
+        </vbox>
+    </window>
+</zk>

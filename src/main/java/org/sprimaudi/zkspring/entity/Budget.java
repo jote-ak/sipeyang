@@ -19,10 +19,10 @@ public class Budget {
     private BigDecimal realisasi;
     @Column(length = 512)
     private String keterangan;
-    @ManyToOne(targetEntity = ObjectAudit.class)
-    private Unit objectAudit;
     @ManyToOne(targetEntity = Referensi.class)
     private Referensi jenis;
+    @ManyToOne(targetEntity = BudgetHeader.class)
+    private BudgetHeader header;
 
     public Long getId() {
         return id;
@@ -56,19 +56,19 @@ public class Budget {
         this.keterangan = keterangan;
     }
 
-    public Unit getObjectAudit() {
-        return objectAudit;
-    }
-
-    public void setObjectAudit(Unit objectAudit) {
-        this.objectAudit = objectAudit;
-    }
-
     public Referensi getJenis() {
         return jenis;
     }
 
     public void setJenis(Referensi jenis) {
         this.jenis = jenis;
+    }
+
+    public BudgetHeader getHeader() {
+        return header;
+    }
+
+    public void setHeader(BudgetHeader header) {
+        this.header = header;
     }
 }

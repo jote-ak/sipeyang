@@ -1,0 +1,25 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Anggaran Belanja Audit" border="normal" id="winTimAudit"
+            width="100%"
+            apply="org.sprimaudi.zkcontroller.perencanaan.BudgetRencanaController">
+        <textbox visible="false" id="txtObjectAudit"/>
+        <vbox width="100%" hflex="true">
+            <label value="Rencana Anggaran Audit"></label>
+            <grid id="gdBudget" width="100%" hflex="true">
+                <columns>
+                    <column width="30%" valign="top"></column>
+                    <column width="55%" valign="middle"></column>
+                    <column width="15%"></column>
+                </columns>
+
+            </grid>
+            <hbox>
+                <button id="btnSimpan" label="simpan"/>
+
+            </hbox>
+        </vbox>
+    </window>
+</zk>

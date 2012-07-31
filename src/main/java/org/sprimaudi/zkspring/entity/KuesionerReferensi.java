@@ -20,8 +20,11 @@ public class KuesionerReferensi implements Serializable {
     private String pertanyaan;
     @ManyToOne(targetEntity = Referensi.class)
     private Referensi jenis;
+    @ManyToOne(targetEntity = KuesionerObjektif.class)
+    private KuesionerObjektif objektif;
     @OneToMany(mappedBy = "kuesioner", targetEntity = Kuesioner.class)
     List<Kuesioner> kuesioners;
+
 
     public Long getId() {
         return id;
@@ -53,5 +56,14 @@ public class KuesionerReferensi implements Serializable {
 
     public void setKuesioners(List<Kuesioner> kuesioners) {
         this.kuesioners = kuesioners;
+    }
+
+
+    public KuesionerObjektif getObjektif() {
+        return objektif;
+    }
+
+    public void setObjektif(KuesionerObjektif objektif) {
+        this.objektif = objektif;
     }
 }

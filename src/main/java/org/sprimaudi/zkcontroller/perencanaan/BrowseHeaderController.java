@@ -1,6 +1,8 @@
 package org.sprimaudi.zkcontroller.perencanaan;
 
 import com.djbc.utilities.StringUtil;
+import com.djbc.zkcomponent.fusion.FusionChart;
+import com.djbc.zkcomponent.fusion.model.SingleSeriesModel;
 import org.apache.commons.collections.CollectionUtils;
 import org.sprimaudi.zkspring.entity.Droa;
 import org.sprimaudi.zkspring.repository.DroaRepository;
@@ -41,14 +43,25 @@ public class BrowseHeaderController extends SelectorComposer<Window> {
     @WireVariable
     DroaRepository droaRepository;
 
+
     @Wire
     Listbox lstHeaderPerencanaan;
+
+    @Wire
+    FusionChart fcFrequent;
 
     @Override
     public void doAfterCompose(Window comp) throws Exception {
         super.doAfterCompose(comp);    //To change body of overridden methods use File | Settings | File Templates.
         System.out.println("prepare to render");
         System.out.println("pgm " + pgm);
+
+        SingleSeriesModel ssm = new SingleSeriesModel();
+        ssm.addSerie("Q1", "500");
+        ssm.addSerie("Q2", "650");
+        ssm.addSerie("Q3", "575");
+        fcFrequent.setModel(ssm);
+
         lstHeaderPerencanaan.setItemRenderer(new ListitemRenderer<Droa>() {
             @Override
             public void render(Listitem listitem, Droa o, int i) throws Exception {

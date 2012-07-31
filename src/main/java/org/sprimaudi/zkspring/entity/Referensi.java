@@ -24,6 +24,7 @@ public class Referensi implements Serializable {
     private String nama;
     @Column(length = 512)
     private String keterangan;
+    private Integer aktif = 1;
     @Column(length = 64)
     private String isi;
     private Long num;
@@ -52,6 +53,8 @@ public class Referensi implements Serializable {
 
     @OneToMany(mappedBy = "jenis", targetEntity = KuesionerReferensi.class)
     List<KuesionerReferensi> kuesionerByJenis;
+    @OneToMany(mappedBy = "kategori", targetEntity = KuesionerObjektif.class)
+    List<KuesionerReferensi> kuesionerByKategori;
 
     public Long getGrup() {
         return grup;
@@ -115,5 +118,13 @@ public class Referensi implements Serializable {
 
     public void setNum(Long num) {
         this.num = num;
+    }
+
+    public Integer getAktif() {
+        return aktif;
+    }
+
+    public void setAktif(Integer aktif) {
+        this.aktif = aktif;
     }
 }

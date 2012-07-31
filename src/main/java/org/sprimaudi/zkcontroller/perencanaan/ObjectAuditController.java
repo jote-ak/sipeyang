@@ -2,8 +2,10 @@ package org.sprimaudi.zkcontroller.perencanaan;
 
 import com.djbc.utilities.Converter;
 import com.djbc.utilities.StringUtil;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import org.sprimaudi.zkspring.entity.Droa;
 import org.sprimaudi.zkspring.entity.ObjectAudit;
+import org.sprimaudi.zkspring.entity.Unit;
 import org.sprimaudi.zkspring.repository.DroaRepository;
 import org.sprimaudi.zkspring.repository.ObjectAuditRepository;
 import org.sprimaudi.zkspring.repository.UnitRepository;
@@ -12,6 +14,7 @@ import org.sprimaudi.zkspring.util.Mapper;
 import org.sprimaudi.zkspring.util.PageMgt;
 import org.sprimaudi.zkutil.ReferensiUtil;
 import org.sprimaudi.zkutil.lookup.LookupUtil;
+import org.sprimaudi.zkutil.lookup.LookupWindow;
 import org.sprimaudi.zkutil.lookuper.UnitLookuper;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
@@ -145,7 +148,7 @@ public class ObjectAuditController extends SelectorComposer<Window> {
 
     @Listen("onClick=#btnUnitObjectAudit")
     public void btnUnitObjectAuditClick(Event evt) {
-        Window w = unitLookuper.showLookup(txtUnit);
+        LookupWindow<Unit> w = unitLookuper.showLookup(txtUnit);
         w.doModal();
 
     }

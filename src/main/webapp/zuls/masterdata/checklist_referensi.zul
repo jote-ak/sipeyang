@@ -1,0 +1,73 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Referensi Checklist" border="normal" id="winTimAudit"
+            width="100%">
+        <groupbox>
+            <caption label="Kategori"/>
+            <combobox width="100%" hflex="true"/>
+        </groupbox>
+        <hbox width="100%" widths="28%,1%,78%">
+            <groupbox width="100%">
+                <caption label="Objective"/>
+                <hbox width="100%" widths="78%,1%,28%">
+                    <textbox hflex="true"></textbox>
+                    <vbox></vbox>
+                    <button label="..."></button>
+                </hbox>
+                <listbox>
+                    <listhead width="100%">
+                        <listheader label="Objective" width="75%"></listheader>
+                        <listheader label="Kode" width="25%"></listheader>
+                    </listhead>
+                </listbox>
+            </groupbox>
+            <vbox></vbox>
+            <groupbox width="100%">
+                <caption label="Kuesioner"/>
+                <hbox width="100%" widths="78%,1%,18%">
+                    <grid>
+                        <columns>
+                            <column width="30%"></column>
+                            <column width="55%"></column>
+                            <column width="15%"></column>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label value="Kategori:"/>
+                                <textbox hflex="true"></textbox>
+                                <label value=""/>
+                            </row>
+                            <row>
+                                <label value="Objektif:"/>
+                                <textbox hflex="true"></textbox>
+                                <label value=""/>
+                            </row>
+                            <row>
+                                <label value="Kuesioner:"/>
+                                <textbox rows="3" hflex="true"></textbox>
+                                <label value=""/>
+                            </row>
+                        </rows>
+                    </grid>
+                    <div hflex="true" width="100%">
+                        <button label="+"/>
+                        <button label="edit"/>
+                        <button label="-"/>
+                        <button label="simpan"/>
+                        <button label="cancel"/>
+                        <button label="refresh"/>
+                    </div>
+                </hbox>
+                <grid width="100%">
+                    <columns>
+                        <column width="100%"></column>
+                    </columns>
+                </grid>
+            </groupbox>
+        </hbox>
+
+
+    </window>
+</zk>

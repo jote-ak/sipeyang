@@ -28,8 +28,8 @@ public class Pegawai implements Serializable {
     private Unit unit;
 
 
-    @OneToMany(mappedBy = "objectAudit", targetEntity = Budget.class)
-    List<Budget> auditees;
+    //    @OneToMany(mappedBy = "objectAudit", targetEntity = ObjectAudit.class)
+//    List<Budget> auditees;
     @OneToMany(mappedBy = "pegawai", targetEntity = AnggotaTim.class)
     List<AnggotaTim> anggotaTimByPegawai;
 
@@ -79,14 +79,6 @@ public class Pegawai implements Serializable {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
-    }
-
-    public List<Budget> getAuditees() {
-        return auditees;
-    }
-
-    public void setAuditees(List<Budget> auditees) {
-        this.auditees = auditees;
     }
 
     public List<AnggotaTim> getAnggotaTimByPegawai() {

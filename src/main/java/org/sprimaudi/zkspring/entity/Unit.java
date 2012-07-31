@@ -23,6 +23,7 @@ public class Unit {
     private String nama;
     @Column(length = 128)
     private String alamat;
+    private Integer level;
     @ManyToOne(targetEntity = Unit.class)
     private Unit parent;
 

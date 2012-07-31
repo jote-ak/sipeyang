@@ -42,7 +42,7 @@ public class ObjectAudit {
     private String auditeeAlamat;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(length = 19)
-    private Date created;
+    private Date created = new Date();
     @OneToOne(targetEntity = Unit.class)
     private Unit unit;
     //
@@ -54,11 +54,12 @@ public class ObjectAudit {
     @OneToMany(targetEntity = SuratTugas.class, mappedBy = "objectAudit")
     List<SuratTugas> suratTugas;
 
-    @OneToMany(mappedBy = "objectAudit", targetEntity = Budget.class)
-    List<Budget> budget;
 
     @ManyToOne(targetEntity = Droa.class)
     private Droa droa;
+
+    @OneToMany(targetEntity = BudgetHeader.class, mappedBy = "objectAudit")
+    List<BudgetHeader> budget;
 
     public Long getId() {
         return id;
@@ -170,14 +171,6 @@ public class ObjectAudit {
 
     public void setAuditess(List<PersonalAuditee> auditess) {
         this.auditess = auditess;
-    }
-
-    public List<Budget> getBudget() {
-        return budget;
-    }
-
-    public void setBudget(List<Budget> budget) {
-        this.budget = budget;
     }
 
     public String getTopik() {

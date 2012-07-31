@@ -313,17 +313,24 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/CommonDJBCUtil_1.0.0.9.jar</systemPath>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.djbc</groupId>-->
-            <!--<artifactId>com.djbc.utilities.StringUtil</artifactId>-->
-            <!--<version>1.0.0.1</version>-->
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${project.basedir}/lib/StringUtil.jar</systemPath>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.djbc</groupId>
+            <artifactId>com.djbc.fusion</artifactId>
+            <version>1.0.0.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/FusionChartv_1.0.0.4.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.djbc</groupId>
+            <artifactId>com.djbc.utilities.StringUtil</artifactId>
+            <version>1.0.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/StringUtil.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>spring-eap6-quickstart</finalName>
+        <finalName>sprimaudi</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

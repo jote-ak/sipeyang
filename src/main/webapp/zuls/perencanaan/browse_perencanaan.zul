@@ -65,5 +65,9 @@
                 <!--<listcell label="Suspect Kredit Macet"></listcell>-->
             <!--</listitem>-->
         </listbox>
+        <div>
+            <fusion id="fcFrequent" caption="Frekuensi Terbang" subCaption="Satu bulan terakhir"
+                    template="Column3D" width="250" height="150" showValue="true" showLegend="true"/>
+        </div>
     </window>
 </zk>

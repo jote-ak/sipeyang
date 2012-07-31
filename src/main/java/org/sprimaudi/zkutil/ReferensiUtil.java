@@ -93,17 +93,31 @@ public class ReferensiUtil {
     }
 
     public void toCombo(Combobox combo, Referensi referensi) {
-        fillCombo(combo);
         List<org.zkoss.zk.ui.Component> cis = combo.getChildren();
+        //check any combo item found
+        boolean anyItem = false;
+        combo.setSelectedItem(null);
+        if (referensi == null) {
+            return;
+        }
+        for (Iterator<org.zkoss.zk.ui.Component> iterator = cis.iterator(); iterator.hasNext(); ) {
+            org.zkoss.zk.ui.Component comp = (org.zkoss.zk.ui.Component) iterator.next();
+            if (comp instanceof Comboitem) {
+                anyItem = true;
+                break;
+            }
+        }
+        if (!anyItem)
+            fillCombo(combo);
+        cis = combo.getChildren();
         for (Iterator<org.zkoss.zk.ui.Component> iterator = cis.iterator(); iterator.hasNext(); ) {
             org.zkoss.zk.ui.Component comp = (org.zkoss.zk.ui.Component) iterator.next();
             if (comp instanceof Comboitem) {
                 Comboitem ci = (Comboitem) comp;
-                if (ci.getValue() != null && ci.getValue().equals(referensi.getKode())) {
-                    //ci.setS
+                if (ci.getValue() != null && ((String) ci.getValue()).equals(referensi.getKode())) {
+                    combo.setSelectedItem(ci);
                 }
             }
         }
-        combo.setValue(referensi.getKode());
     }
 }
