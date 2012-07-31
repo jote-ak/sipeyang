@@ -29,7 +29,7 @@ public class ObjectAuditService {
         if (droa == null || objectAudit == null) {
             return;
         }
-        if (objectAudit.getDroa()!=null && objectAudit.getDroa().equals(droa)) {
+        if (objectAudit.getDroa() != null && objectAudit.getDroa().equals(droa)) {
             return;//don't need to save to droa again
         }
         objectAudit.setDroa(droa);

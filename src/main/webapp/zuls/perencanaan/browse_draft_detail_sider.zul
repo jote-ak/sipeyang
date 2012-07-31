@@ -20,7 +20,7 @@
             <menuitem id="miEdit" label="Edit"></menuitem>
             <menuitem id="miTim" label="Tim Audit"></menuitem>
             <menuitem id="miBudget" label="Budgeting"></menuitem>
-            <menuitem id="miChecklist"  label="Checklist"></menuitem>
+            <menuitem id="miChecklist" label="Checklist"></menuitem>
         </menupopup>
     </window>
 </zk>

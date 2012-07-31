@@ -1,0 +1,61 @@
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window title="Referensi Objektif Checklist" border="normal" id="winTimAudit"
+            width="100%"
+            apply="org.sprimaudi.zkcontroller.masterdata.ReferensiObjektifKuesionerController">
+
+        <hbox width="100%" widths="48%,1%,48%">
+            <div>
+                <textbox id="txtId" visible="false"/>
+                <grid>
+                    <columns>
+                        <column width="30%"></column>
+                        <column width="55%"></column>
+                        <column width="15%"></column>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Kategori:"/>
+                            <combobox id="txtKategori" hflex="true">
+                                <custom-attributes grup="12"/>
+                            </combobox>
+                            <label value=""/>
+                        </row>
+                        <row>
+                            <label value="Objektif:"/>
+                            <textbox id="txtObjektif" rows="2" hflex="true"></textbox>
+                            <label value=""/>
+                        </row>
+                        <row>
+                            <label value="Kode:"/>
+                            <textbox id="txtKode" width="40px"></textbox>
+                            <label value=""/>
+                        </row>
+                    </rows>
+                </grid>
+                <hbox>
+                    <hbox>
+                        <button id="btnAdd" label="+"></button>
+                        <button id="btnEdit" label="edit"></button>
+                        <button id="btnDelete" label="-"></button>
+                        <button id="btnSimpan" label="simpan"></button>
+                        <button id="btnCancel" label="simpan"></button>
+                        <button id="btnRefresh" label="refresh"></button>
+                    </hbox>
+                </hbox>
+            </div>
+            <vbox></vbox>
+            <listbox>
+                <listhead>
+                    <listheader width="40%" label="Objektif"></listheader>
+                    <listheader width="35%" label="Kategori"></listheader>
+                    <listheader width="25%" label="Kode"></listheader>
+                </listhead>
+            </listbox>
+        </hbox>
+
+
+    </window>
+</zk>

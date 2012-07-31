@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Filter Entry = Fentry
+ *
  * @author User
  */
 public class Fentry {

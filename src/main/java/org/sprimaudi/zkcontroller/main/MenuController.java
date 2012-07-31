@@ -1,5 +1,7 @@
 package org.sprimaudi.zkcontroller.main;
 
+import org.sprimaudi.zkcontroller.masterdata.ReferensiChecklistController;
+import org.sprimaudi.zkcontroller.masterdata.ReferensiObjektifKuesionerController;
 import org.sprimaudi.zkspring.util.PageMgt;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -78,7 +80,12 @@ public class MenuController extends SelectorComposer<Window> {
 
     @Listen("onClick=#mnChecklist")
     public void mnChecklist() {
-        pgm.showMainOnly("zuls/masterdata/checklist_referensi.zul");
+        pgm.showMainOnly(ReferensiChecklistController.zulpath);
+    }
+
+    @Listen("onClick=#mnObjektif")
+    public void mnObjektif() {
+        pgm.showMainOnly(ReferensiObjektifKuesionerController.zulpath);
     }
 
     @Listen("onCreate=window")

@@ -6,6 +6,7 @@ package org.sprimaudi.zkspring.filter;
 
 /**
  * Filterable Field = Fielderable
+ *
  * @author User
  */
 public class Fielderable<E> {

@@ -3,10 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window title="Referensi Checklist" border="normal" id="winTimAudit"
-            width="100%">
+            width="100%"
+            apply="org.sprimaudi.zkcontroller.masterdata.ReferensiChecklistController">
         <groupbox>
             <caption label="Kategori"/>
-            <combobox width="100%" hflex="true"/>
+            <combobox id="txtKategori" width="100%" hflex="true">
+                <custom-attributes grup="12"/>
+            </combobox>
         </groupbox>
         <hbox width="100%" widths="28%,1%,78%">
             <groupbox width="100%">

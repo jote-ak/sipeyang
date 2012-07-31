@@ -7,7 +7,6 @@ package org.sprimaudi.zkspring.filter;
 import java.util.Date;
 
 /**
- *
  * @author User
  */
 public class FilterUtil {

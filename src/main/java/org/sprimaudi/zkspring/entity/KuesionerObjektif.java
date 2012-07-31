@@ -32,5 +32,59 @@ public class KuesionerObjektif {
     @ManyToOne(targetEntity = Referensi.class)
     private Referensi kategori;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getObjektif() {
+        return objektif;
+    }
+
+    public void setObjektif(String objektif) {
+        this.objektif = objektif;
+    }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public List<KuesionerReferensi> getKuesioner() {
+        return kuesioner;
+    }
+
+    public void setKuesioner(List<KuesionerReferensi> kuesioner) {
+        this.kuesioner = kuesioner;
+    }
+
+    public Referensi getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(Referensi kategori) {
+        this.kategori = kategori;
+    }
 }

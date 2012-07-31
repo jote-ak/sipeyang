@@ -5,7 +5,6 @@
 package org.sprimaudi.zkspring.filter;
 
 /**
- *
  * @author jote
  */
 public class Paging {

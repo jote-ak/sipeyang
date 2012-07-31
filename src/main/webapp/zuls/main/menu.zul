@@ -13,9 +13,9 @@
                     <menuitem id="mnBrowseDraft" label="Browse Draft"/>
                     <menuitem id="mnEditDraft" label="Edit Draft"/>
                     <menuitem id="mnEditItemDraft" label="Edit Item"/>
-                    <menuitem id="mnBudgeting"  label="Budgeting"/>
-                    <menuitem id="mnPenugasanAudit"  label="Penugasan"/>
-                    <menuitem id="mnPemeriksaanDraft"  label="Pemeriksaan"/>
+                    <menuitem id="mnBudgeting" label="Budgeting"/>
+                    <menuitem id="mnPenugasanAudit" label="Penugasan"/>
+                    <menuitem id="mnPemeriksaanDraft" label="Pemeriksaan"/>
                     <menuitem id="mnApprovalRencanaAudit" label="Approval"/>
                 </menupopup>
             </menu>
@@ -53,7 +53,7 @@
             <menu id="Master Data" label="Master Data">
                 <menupopup>
                     <menuitem id="mnChecklist" label="Referensi Cheklist"/>
-                    <menuitem id="Daftar Auditor" label="Setting Agenda"/>
+                    <menuitem id="mnObjektif" label="Referensi Objektif"/>
                     <menuitem id="Daftar Auditee" label="Setting Agenda"/>
                     <!--                    <menuitem id="mnAbout" label="About"/>-->
                 </menupopup>
